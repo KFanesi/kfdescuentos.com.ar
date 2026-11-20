@@ -22,7 +22,8 @@ body {
   overflow-wrap: break-word;
 }
 
-main { flex: 1 0 auto; display: block; }
+/* Ancho máximo en ultrawide: el main no se estira más de 120rem (1920 px) y se centra */
+main { flex: 1 0 auto; display: block; width: 100%; max-width: var(--main-max); margin-inline: auto; }
 main:focus { outline: none; } /* destino del "Saltar al contenido", no es un control */
 
 h1, h2, h3, h4 {
@@ -72,10 +73,12 @@ button { cursor: pointer; }
   border: 0;
 }
 
-/* Saltar al contenido: invisible hasta recibir foco; tinta sobre amarillo 12.51:1 */
+/* Saltar al contenido: invisible hasta recibir foco; tinta sobre amarillo 12.51:1.
+   Aparece abajo a la izquierda, fijo en el viewport: así nunca queda bajo el header sticky, cuyo alto cambia
+   (móvil ~115 px, escritorio ~71 px, y más alto aún sin JS con la nav desplegada). */
 .skip-link {
-  position: absolute;
-  top: var(--space-2);
+  position: fixed;
+  bottom: var(--space-4);
   left: var(--space-2);
   z-index: 1000;
   padding: var(--space-3) var(--space-4);
@@ -83,7 +86,7 @@ button { cursor: pointer; }
   color: var(--color-tinta);
   font-weight: 700;
   border-radius: var(--radius-sm);
-  transform: translateY(-200%);
+  transform: translateY(300%); /* fuera de pantalla (por debajo) hasta recibir foco */
 }
 .skip-link:focus { transform: none; outline: 3px solid var(--color-cafe); outline-offset: 2px; }
 
@@ -106,3 +109,4 @@ button { cursor: pointer; }
     transition-duration: 0.01ms !important;
   }
 }
+

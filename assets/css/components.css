@@ -118,9 +118,10 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .js .site-nav.is-open a { width: 100%; }
 
 /* ---------- Buscador ---------- */
-.search-form { display: flex; flex: 1 1 100%; gap: var(--space-2); }
+.search-form { display: flex; flex: 1 1 100%; min-width: 0; gap: var(--space-2); } /* min-width:0: sin esto el form no baja de la suma de anchos intrínsecos (input size=20 + botón) y desborda a 320 px */
 .search-form input[type="search"] {
-  flex: 1 1 auto;
+  flex: 1 1 0;
+  width: 100%;
   min-width: 0;
   min-height: var(--target);
   padding: var(--space-2) var(--space-4);

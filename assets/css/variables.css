@@ -81,7 +81,8 @@
   --target-min: 1.5rem;
 
   /* Alturas y desplazamiento: el header es sticky; scroll-padding evita que tape el foco (WCAG 2.4.11) */
-  --header-h: 4rem;
+  --header-h: 7.25rem; /* alto real del header en móvil (marca + menú + buscador en 2 filas, ~115 px); desde 48em baja a 4.5rem. Si scroll-padding fuera menor, al enfocar algo el navegador lo deja bajo el header */
+  --main-max: 120rem;
   --scroll-offset: calc(var(--header-h) + var(--space-5));
 
   /* Breakpoints (documentales: las media queries no admiten var()).
@@ -99,3 +100,4 @@
   --wave-azul: var(--color-azul);
   --wave-amarillo: var(--color-amarillo);
 }
+@media (min-width: 48em) { :root { --header-h: 4.5rem; } }
