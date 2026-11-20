@@ -1,0 +1,108 @@
+/* Reset liviano, tipografía, enlaces, foco y utilidades de accesibilidad. */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: var(--scroll-offset); /* WCAG 2.4.11: el header fijo no tapa el foco ni los anclas */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading);
+  overflow-wrap: break-word;
+}
+
+main { flex: 1 0 auto; display: block; }
+main:focus { outline: none; } /* destino del "Saltar al contenido", no es un control */
+
+h1, h2, h3, h4 {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-display);
+  line-height: var(--leading-tight);
+  color: var(--color-cafe);
+  text-wrap: balance;
+}
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-2xl); }
+h3 { font-size: var(--text-xl); }
+h4 { font-size: var(--text-lg); }
+p, ul, ol { margin: 0 0 var(--space-4); }
+ul, ol { padding-left: 1.25em; }
+
+img, svg, video { max-width: 100%; height: auto; }
+img { display: block; }
+
+a { color: var(--link); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+/* Foco visible: 3:1 mínimo (cafe sobre claro 15.71:1; amarillo sobre marrón 11.65:1) */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+.site-header :focus-visible,
+.site-footer :focus-visible,
+.on-dark :focus-visible {
+  outline-color: var(--focus-ring-on-dark);
+}
+
+/* Oculto visualmente, disponible para lectores de pantalla */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Saltar al contenido: invisible hasta recibir foco; tinta sobre amarillo 12.51:1 */
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 1000;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-amarillo);
+  color: var(--color-tinta);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; outline: 3px solid var(--color-cafe); outline-offset: 2px; }
+
+/* Región para anuncios dinámicos (aria-live): presente en el DOM, sin ocupar espacio */
+.live-region {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

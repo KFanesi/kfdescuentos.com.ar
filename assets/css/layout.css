@@ -1,0 +1,62 @@
+/* Contenedor, secciones, grillas y separadores de ola (CSS puro: sin SVG, sin style="" ni CSP inline). */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+@media (min-width: 64em) { .container { --container-pad: var(--space-6); } }
+
+.section { padding-block: var(--space-7); }
+.section--crema { background: var(--color-crema); color: var(--color-tinta); }
+.section--cafe { background: var(--color-cafe); color: var(--color-crema); }
+.section--cafe h2, .section--cafe h3 { color: var(--color-amarillo); }
+.section--cafe a { color: var(--color-amarillo); }
+.section__title { margin-bottom: var(--space-5); font-size: var(--text-2xl); }
+.section__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+.section__header .section__title { margin-bottom: 0; }
+@media (min-width: 64em) { .section { padding-block: var(--space-8); } }
+
+.stack > * + * { margin-top: var(--space-4); }
+.text-measure { max-width: var(--text-max); }
+.text-center { text-align: center; }
+
+/* Grillas flexibles: tantas columnas como quepan (sin media queries ni desborde a 320 px) */
+.grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+}
+.grid--wide { grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
+.grid--2 { grid-template-columns: 1fr; }
+@media (min-width: 48em) { .grid--2 { grid-template-columns: repeat(2, 1fr); } }
+
+/* Olas: banda azul con una franja amarilla debajo, borde superior ondulado por máscara.
+   Decorativas: usar <div class="wave" aria-hidden="true"></div>. Color de fondo de la página
+   detrás de la ola = el del bloque anterior; la ola se dibuja encima. --wave-flip invierte. */
+.wave {
+  position: relative;
+  height: var(--wave-h);
+  background: var(--wave-azul);
+  --wave-size: calc(var(--wave-h) * 3);
+  --wave-mask: radial-gradient(circle at 50% 0, #0000 calc(var(--wave-h) * 0.95), #000 calc(var(--wave-h) * 0.95 + 1px));
+  -webkit-mask: var(--wave-mask) 0 0 / var(--wave-size) 100% repeat-x;
+  mask: var(--wave-mask) 0 0 / var(--wave-size) 100% repeat-x;
+  pointer-events: none;
+}
+.wave::after { /* franja amarilla, desplazada media onda */
+  content: "";
+  position: absolute;
+  inset: 55% 0 0;
+  background: var(--wave-amarillo);
+}
+.wave--amarillo { background: var(--wave-amarillo); }
+.wave--amarillo::after { content: none; }
+.wave--flip { transform: scaleY(-1); }
