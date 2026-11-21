@@ -1,9 +1,9 @@
-import { bindActions } from './actions.js?v=ccd82370';
-import { loadCollection } from './data.js?v=ccd82370';
-import { el } from './dom.js?v=ccd82370';
-import { validateCoupon } from './schema.js?v=ccd82370';
-import { COUPON_FIELDS, filterItems, paginate, sortItems } from './search.js?v=ccd82370';
-import { positiveInt, readParams, siteUrl, writeParams } from './utils.js?v=ccd82370';
+import { bindActions } from './actions.js?v=00781e01';
+import { loadCollection } from './data.js?v=00781e01';
+import { el } from './dom.js?v=00781e01';
+import { validateCoupon } from './schema.js?v=00781e01';
+import { COUPON_FIELDS, filterItems, paginate, sortItems } from './search.js?v=00781e01';
+import { positiveInt, readParams, siteUrl, writeParams } from './utils.js?v=00781e01';
 
 // Listados con búsqueda, filtros, orden y "Cargar más" (`ul[data-paginated]`). Contrato con el HTML:
 //  - `form[data-filters]` con campos `q` (búsqueda), `categoria` (solo productos) y `orden`, y `a[data-clear]`.

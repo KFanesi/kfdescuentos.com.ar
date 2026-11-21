@@ -478,27 +478,19 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .empty-state .btn, .error-state .btn { margin-top: var(--space-3); }
 
 /* ---------- Redes: panel y lista (también dentro del footer) ---------- */
-.social-list { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3) var(--space-5); margin: 0; padding: 0; list-style: none; }
+.social-list { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3) var(--space-4); margin: 0; padding: 0; list-style: none; }
 .social-link {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-2);
+  justify-content: center;
   min-width: var(--target);
   min-height: var(--target);
   padding: var(--space-1);
-  border-radius: var(--radius);
-  color: var(--color-crema); /* 15.71:1 sobre marrón */
-  font-weight: 700;
-  line-height: 1.2;
-  text-align: center;
-  text-decoration: none;
+  border-radius: 50%;
   transition: transform var(--transition);
 }
 .social-link:hover { transform: translateY(-2px); }
-.social-link:hover .social-link__label { text-decoration: underline; text-decoration-thickness: 2px; } /* no solo hover: el nombre siempre está a la vista */
 .social-link__icon { width: 3.5rem; height: 3.5rem; border-radius: 50%; object-fit: contain; box-shadow: 0 0 0 2px rgb(251 245 238 / 0.55); }
-.social-link__label { overflow-wrap: anywhere; }
 .social-panel {
   padding: var(--space-5) var(--space-4);
   background: var(--color-cafe);
@@ -668,7 +660,7 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .prose a { font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.2em; } /* azul sobre crema 8.09:1 y subrayado: no solo color */
 .prose strong { color: var(--color-cafe); }
 
-/* ---------- Panel de contacto: caja crema con las redes (la etiqueta va en tinta: el crema del social-link base no se leería) ---------- */
+/* ---------- Panel de contacto: caja crema con las redes (solo logos) ---------- */
 .contact-panel {
   padding: var(--space-5) var(--space-4);
   background: var(--color-crema);
@@ -680,10 +672,8 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .contact-panel :where(h2, h3) { margin-bottom: var(--space-4); font-size: var(--text-xl); color: var(--color-cafe); }
 .contact-panel > :last-child { margin-bottom: 0; }
 .contact-panel .social-list { justify-content: flex-start; gap: var(--space-3) var(--space-5); }
-.contact-panel .social-link { color: var(--color-tinta); } /* 16.89:1 */
 .contact-panel .social-link__icon { box-shadow: 0 0 0 2px var(--color-cafe); } /* aro visible sobre crema (el aro crema de la versión sobre marrón desaparecería) */
-.contact-panel .social-link:hover .social-link__label { text-decoration: underline; text-decoration-thickness: 2px; }
-
+.contact-panel 
 /* ---------- 404 ---------- */
 .notfound {
   display: grid;

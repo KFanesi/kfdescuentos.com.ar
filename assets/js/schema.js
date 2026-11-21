@@ -1,4 +1,4 @@
-import { isCalendarDate, isValidHttpsUrl } from './utils.js?v=ccd82370';
+import { isCalendarDate, isValidHttpsUrl } from './utils.js?v=00781e01';
 
 // Esquema de los JSON. Los validadores son puros: reciben un ítem y devuelven la lista de
 // errores en texto (vacía = válido), igual que los del test estático de datos.

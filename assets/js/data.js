@@ -1,5 +1,5 @@
-import { isExpired, siteUrl, todayLocal } from './utils.js?v=ccd82370';
-import { validateAll, validateCategory } from './schema.js?v=ccd82370';
+import { isExpired, siteUrl, todayLocal } from './utils.js?v=00781e01';
+import { validateAll, validateCategory } from './schema.js?v=00781e01';
 
 // Carga de los JSON de datos. Ninguna función lanza: un JSON caído, inexistente o inválido es un estado más de la página
 // ({ ok: false }) y no un error sin capturar, así el resto del sitio sigue funcionando.

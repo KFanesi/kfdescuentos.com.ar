@@ -1,9 +1,9 @@
-import { config } from './config.js?v=ccd82370';
-import { buildActions, el } from './dom.js?v=ccd82370';
-import { mountList } from './list.js?v=ccd82370';
-import { validateProduct } from './schema.js?v=ccd82370';
-import { productFields } from './search.js?v=ccd82370';
-import { discountPercent, formatDate, formatPrice, siteUrl } from './utils.js?v=ccd82370';
+import { config } from './config.js?v=00781e01';
+import { buildActions, el } from './dom.js?v=00781e01';
+import { mountList } from './list.js?v=00781e01';
+import { validateProduct } from './schema.js?v=00781e01';
+import { productFields } from './search.js?v=00781e01';
+import { discountPercent, formatDate, formatPrice, siteUrl } from './utils.js?v=00781e01';
 
 // El JSON no trae las medidas de la foto: estos atributos solo reservan un recuadro cuadrado (el CSS lo recorta con
 // object-fit) para que la página no se mueva al cargar la imagen.

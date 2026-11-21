@@ -1,10 +1,10 @@
-import { activeSocials, config } from './config.js?v=ccd82370';
-import { initCarousel } from './carousel.js?v=ccd82370';
-import { initCategories } from './categories.js?v=ccd82370';
-import { initCoupons } from './coupons.js?v=ccd82370';
-import { el } from './dom.js?v=ccd82370';
-import { initProducts } from './products.js?v=ccd82370';
-import { siteUrl } from './utils.js?v=ccd82370';
+import { activeSocials, config } from './config.js?v=00781e01';
+import { initCarousel } from './carousel.js?v=00781e01';
+import { initCategories } from './categories.js?v=00781e01';
+import { initCoupons } from './coupons.js?v=00781e01';
+import { el } from './dom.js?v=00781e01';
+import { initProducts } from './products.js?v=00781e01';
+import { siteUrl } from './utils.js?v=00781e01';
 
 /** Menú móvil: el botón nace visible y la nav colapsada (así el header no cambia de alto al cargar el JS); abre y cierra la nav. Sin JS, `sin-js.css` (dentro de <noscript>) deja la nav siempre visible. */
 export function initMenu(document) {
@@ -38,7 +38,7 @@ function buildSocialItem(document, { key, name, url }) {
   const icon = el(document, 'img', 'social-link__icon');
   icon.alt = '';
   icon.src = siteUrl(`assets/icons/${key}.svg`);
-  link.append(icon, el(document, 'span', 'social-link__label', name));
+  link.append(icon);
   const item = document.createElement('li');
   item.append(link);
   return item;

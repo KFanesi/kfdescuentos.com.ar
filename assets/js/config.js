@@ -1,4 +1,4 @@
-import { isValidHttpsUrl } from './utils.js?v=ccd82370';
+import { isValidHttpsUrl } from './utils.js?v=00781e01';
 
 // Datos de runtime del sitio. Nunca se inventa un valor: lo que falta queda en null y no se renderiza.
 export const config = {

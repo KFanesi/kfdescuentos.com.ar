@@ -1,8 +1,8 @@
-import { buildActions, el } from './dom.js?v=ccd82370';
-import { mountList } from './list.js?v=ccd82370';
-import { validateCoupon } from './schema.js?v=ccd82370';
-import { COUPON_FIELDS } from './search.js?v=ccd82370';
-import { formatDate } from './utils.js?v=ccd82370';
+import { buildActions, el } from './dom.js?v=00781e01';
+import { mountList } from './list.js?v=00781e01';
+import { validateCoupon } from './schema.js?v=00781e01';
+import { COUPON_FIELDS } from './search.js?v=00781e01';
+import { formatDate } from './utils.js?v=00781e01';
 
 /**
  * Tarjeta de un cupón (el CSS usa estas clases). Con código: muestra el código y "Copiar código".
