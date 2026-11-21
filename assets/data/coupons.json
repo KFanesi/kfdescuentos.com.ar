@@ -1,6 +1,6 @@
 [ 
   {
-    "id": "cupon-ComprasGrandes",
+    "id": "cupon-comprasgrandes",
     "brand": "Mercado Libre",
     "title": "Cupón Diario",
     "code": "Compras Grandes",
@@ -13,9 +13,9 @@
     "active": true
   },
   {
-    "id": "cupon-ComprasMedianas",
+    "id": "cupon-comprasmedianas",
     "brand": "Mercado Libre",
-    "title": "Cupón DIARIO",
+    "title": "Cupón Diario",
     "code": "Compras Medianas",
     "description": "Lista de productos de Mercado Libre para usar con el cupón.",
     "conditions": "Revisá las condiciones y el vencimiento en Mercado Libre antes de usarlo.",
@@ -26,9 +26,9 @@
     "active": true
   },
   {
-    "id": "cupon-ComprasChicas",
+    "id": "cupon-compraschicas",
     "brand": "Mercado Libre",
-    "title": "Cupón DIARIO",
+    "title": "Cupón Diario",
     "code": "Compras Chicas",
     "description": "Lista de productos de Mercado Libre para usar con el cupón.",
     "conditions": "Revisá las condiciones y el vencimiento en Mercado Libre antes de usarlo.",
