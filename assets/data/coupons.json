@@ -1,4 +1,43 @@
-[
+[ 
+  {
+    "id": "cupon-ComprasGrandes",
+    "brand": "Mercado Libre",
+    "title": "Cupón Diario",
+    "code": "Compras Grandes",
+    "description": "Lista de productos de Mercado Libre para usar con el cupón.",
+    "conditions": "Revisá las condiciones y el vencimiento en Mercado Libre antes de usarlo.",
+    "exclusive": false,
+    "publishedAt": "2026-11-21",
+    "expiresAt": null,
+    "url": "https://meli.la/2oFNHFU",
+    "active": true
+  },
+  {
+    "id": "cupon-ComprasMedianas",
+    "brand": "Mercado Libre",
+    "title": "Cupón DIARIO",
+    "code": "Compras Medianas",
+    "description": "Lista de productos de Mercado Libre para usar con el cupón.",
+    "conditions": "Revisá las condiciones y el vencimiento en Mercado Libre antes de usarlo.",
+    "exclusive": false,
+    "publishedAt": "2026-11-21",
+    "expiresAt": null,
+    "url": "https://meli.la/1eezUni",
+    "active": true
+  },
+  {
+    "id": "cupon-ComprasChicas",
+    "brand": "Mercado Libre",
+    "title": "Cupón DIARIO",
+    "code": "Compras Chicas",
+    "description": "Lista de productos de Mercado Libre para usar con el cupón.",
+    "conditions": "Revisá las condiciones y el vencimiento en Mercado Libre antes de usarlo.",
+    "exclusive": false,
+    "publishedAt": "2026-11-21",
+    "expiresAt": null,
+    "url": "https://meli.la/2T8A5iu",
+    "active": true
+  },
   {
     "id": "cupon-corazon",
     "brand": "Mercado Libre",
