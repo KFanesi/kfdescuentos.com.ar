@@ -1,4 +1,4 @@
-import { isValidHttpsUrl } from './utils.js?v=7a113a9a';
+import { isValidHttpsUrl } from './utils.js?v=6e67dc66';
 
 // Datos de runtime del sitio. Nunca se inventa un valor: lo que falta queda en null y no se renderiza.
 export const config = {
@@ -6,11 +6,6 @@ export const config = {
     whatsapp: 'https://whatsapp.com/channel/0029VbDdL6aATRSxLotGXr2l', // canal de WhatsApp (no un chat)
     x: 'https://x.com/KFDescuentos',
     instagram: 'https://www.instagram.com/kfdescuentos/',
-  },
-  affiliate: {
-    // Enlace de afiliado de las listas de cupones, tal como lo entrega Mercado Libre. NO se modifica ni se le agregan
-    // parámetros: cualquier cambio puede hacer que la comisión no se registre. Lo usa la página de administración (/admin/).
-    listsUrl: 'https://meli.la/1hVcei8',
   },
 };
 

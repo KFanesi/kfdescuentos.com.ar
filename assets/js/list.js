@@ -1,7 +1,7 @@
-import { bindActions } from './actions.js?v=7a113a9a';
-import { loadCollection } from './data.js?v=7a113a9a';
-import { mountListing } from './listing.js?v=7a113a9a';
-import { positiveInt, readParams } from './utils.js?v=7a113a9a';
+import { bindActions } from './actions.js?v=6e67dc66';
+import { loadCollection } from './data.js?v=6e67dc66';
+import { mountListing } from './listing.js?v=6e67dc66';
+import { positiveInt, readParams } from './utils.js?v=6e67dc66';
 
 // Ciclo común de los listados de cupones (home y /cupones/): cargar, dibujar y mostrar el estado (cargando, vacío, error).
 // Contrato con el HTML: el contenedor es un <ul> dentro de una <section> que puede traer `[data-empty]` y `[data-error]`

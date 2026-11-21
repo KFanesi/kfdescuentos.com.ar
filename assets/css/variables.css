@@ -39,15 +39,6 @@
    - tinta    sobre crema         = 16.89:1  texto de .contact-panel; etiqueta de las redes sobre el panel crema
    - cafe     sobre crema         = 15.71:1  borde de .contact-panel, aro de los íconos de redes, foco
    - azul     sobre blanco        =  8.75:1  enlaces del texto corrido .prose sobre fondo blanco
-   Página /admin/ (sin colores nuevos; pares ya validados). Ratios con la fórmula WCAG:
-   - tinta    sobre amarillo      = 12.51:1  número de cada paso (.admin-steps) · borde cafe del círculo sobre amarillo = 11.65:1
-   - tinta    sobre blanco        = 18.28:1  texto de los pasos, de los campos y de las filas de .admin-list
-   - cafe     sobre blanco        = 17.01:1  etiquetas, negritas de los pasos, borde de campos y botón "Quitar" (3:1 exigido)
-   - gris     sobre blanco        =  6.58:1  ayudas (.admin-hint) dentro del formulario
-   - gris     sobre crema         =  6.08:1  ayudas dentro de .admin-result y estado vacío de la lista (texto y borde punteado)
-   - tinta    sobre crema         = 16.89:1  .admin-note, .admin-result y la caja de errores
-   - cafe     sobre crema         = 15.71:1  bordes de esas cajas, rótulo "Revisá esto antes de seguir" y foco
-   - crema    sobre cafe          = 15.71:1  botón "Quitar" al pasar el mouse
    NO se usa: amarillo sobre crema (no alcanza 3:1), blanco sobre amarillo, tinta sobre cafe (1.07:1). */
 :root {
   /* Paleta */

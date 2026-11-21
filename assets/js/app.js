@@ -1,8 +1,7 @@
-import { initAdmin } from './admin.js?v=7a113a9a';
-import { activeSocials, config } from './config.js?v=7a113a9a';
-import { initCoupons } from './coupons.js?v=7a113a9a';
-import { el } from './dom.js?v=7a113a9a';
-import { siteUrl } from './utils.js?v=7a113a9a';
+import { activeSocials, config } from './config.js?v=6e67dc66';
+import { initCoupons } from './coupons.js?v=6e67dc66';
+import { el } from './dom.js?v=6e67dc66';
+import { siteUrl } from './utils.js?v=6e67dc66';
 
 /** Menú móvil: el botón nace visible y la nav colapsada (así el header no cambia de alto al cargar el JS); abre y cierra la nav. Sin JS, `sin-js.css` (dentro de <noscript>) deja la nav siempre visible. */
 export function initMenu(document) {
@@ -76,7 +75,7 @@ export async function safeInit(name, init) {
   }
 }
 
-/** Arranca todo lo que la página tenga: menú, redes, año y, si existen sus contenedores, cupones y la página de administración (`[data-admin]`). */
+/** Arranca todo lo que la página tenga: menú, redes, año y, si existen sus contenedores, cupones. */
 export async function initPage(document, { fetchFn, now = new Date() } = {}) {
   const options = { fetchFn, now };
   const jobs = [
@@ -84,7 +83,6 @@ export async function initPage(document, { fetchFn, now = new Date() } = {}) {
     safeInit('redes', () => initSocial(document, activeSocials(config))),
     safeInit('año', () => initYear(document, now)),
     ...[...document.querySelectorAll('[data-coupons]')].map((container) => safeInit('cupones', () => initCoupons(container, options))),
-    ...[...document.querySelectorAll('[data-admin]')].map((root) => safeInit('administración', () => initAdmin(root, options))),
   ];
   await Promise.all(jobs);
 }

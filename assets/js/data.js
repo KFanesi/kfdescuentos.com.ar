@@ -1,5 +1,5 @@
-import { isExpired, siteUrl, todayLocal } from './utils.js?v=7a113a9a';
-import { validateAll } from './schema.js?v=7a113a9a';
+import { isExpired, siteUrl, todayLocal } from './utils.js?v=6e67dc66';
+import { validateAll } from './schema.js?v=6e67dc66';
 
 // Carga de los JSON de datos. Ninguna función lanza: un JSON caído, inexistente o inválido es un estado más de la página
 // ({ ok: false }) y no un error sin capturar, así el resto del sitio sigue funcionando.
@@ -10,16 +10,14 @@ const dataVersion = (document) => document.querySelector('meta[name="data-versio
 /**
  * Pide `<base>assets/data/<name>.json`. La base sale de la ubicación del módulo (siteUrl), no de una ruta escrita:
  * el sitio puede vivir bajo un prefijo de ruta. Con versión, agrega `?v=` para saltear la caché de Cloudflare.
- * Con `fresh: true` no se usa la versión ni la caché (`cache: 'no-store'`): es para quien edita los datos (/admin/),
- * que nunca debe partir de una copia vieja. Sin `fresh` el comportamiento es el de siempre.
  * Devuelve `{ ok, items, error }`.
  */
-export async function loadJson(name, { document, fetchFn = globalThis.fetch, fresh = false } = {}) {
+export async function loadJson(name, { document, fetchFn = globalThis.fetch } = {}) {
   try {
     const url = new URL(siteUrl(`assets/data/${name}.json`));
-    const version = fresh ? '' : dataVersion(document);
+    const version = dataVersion(document);
     if (version) url.searchParams.set('v', version);
-    const response = await (fresh ? fetchFn(url.href, { cache: 'no-store' }) : fetchFn(url.href));
+    const response = await fetchFn(url.href);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const items = await response.json();
     if (!Array.isArray(items)) throw new Error('el JSON debe ser una lista');

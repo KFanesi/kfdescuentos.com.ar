@@ -1,8 +1,8 @@
-import { buildActions, el } from './dom.js?v=7a113a9a';
-import { mountList } from './list.js?v=7a113a9a';
-import { validateCoupon } from './schema.js?v=7a113a9a';
-import { COUPON_FIELDS } from './search.js?v=7a113a9a';
-import { formatDate } from './utils.js?v=7a113a9a';
+import { buildActions, el } from './dom.js?v=6e67dc66';
+import { mountList } from './list.js?v=6e67dc66';
+import { validateCoupon } from './schema.js?v=6e67dc66';
+import { COUPON_FIELDS } from './search.js?v=6e67dc66';
+import { formatDate } from './utils.js?v=6e67dc66';
 
 // Texto del título grande y del título al compartir, con respaldo para los cupones que no traen `discount` o `title`.
 const text = (value) => (typeof value === 'string' ? value.trim() : '');

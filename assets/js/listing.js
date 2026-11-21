@@ -1,7 +1,7 @@
-import { announce, bindActions } from './actions.js?v=7a113a9a';
-import { loadCollection } from './data.js?v=7a113a9a';
-import { filterItems, paginate, sortByRecent } from './search.js?v=7a113a9a';
-import { positiveInt, readParams, writeParams } from './utils.js?v=7a113a9a';
+import { announce, bindActions } from './actions.js?v=6e67dc66';
+import { loadCollection } from './data.js?v=6e67dc66';
+import { filterItems, paginate, sortByRecent } from './search.js?v=6e67dc66';
+import { positiveInt, readParams, writeParams } from './utils.js?v=6e67dc66';
 
 // Listado de cupones con búsqueda y "Cargar más" (`ul[data-paginated]`), siempre de más reciente a más antiguo. Contrato con el HTML:
 //  - `form[data-filters]` con el campo `q` (búsqueda) y `a[data-clear]`.

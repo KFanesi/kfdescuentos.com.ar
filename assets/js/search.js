@@ -1,4 +1,4 @@
-import { normalizeText } from './utils.js?v=7a113a9a';
+import { normalizeText } from './utils.js?v=6e67dc66';
 
 // Búsqueda, orden y paginación de los listados. Todo es puro (sin DOM) y nunca modifica las listas que recibe.
 

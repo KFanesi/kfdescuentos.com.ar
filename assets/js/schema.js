@@ -1,10 +1,20 @@
-import { isCalendarDate, isValidHttpsUrl } from './utils.js?v=7a113a9a';
+import { isCalendarDate, isValidHttpsUrl } from './utils.js?v=6e67dc66';
 
 // Esquema de los JSON. Los validadores son puros: reciben un ítem y devuelven la lista de
 // errores en texto (vacía = válido), igual que los del test estático de datos.
 // `validateAll` aplica uno a toda una lista y descarta lo inválido sin romper el resto.
 
 const LOCAL_IMAGE = /^\/?assets\/img\/.+\.(webp|avif|png|jpg|jpeg|svg)$/;
+
+// Los cupones solo pueden llevar a Mercado Libre: el enlace es el de afiliado y un dominio ajeno desviaría las comisiones.
+const AFFILIATE_HOSTS = ['meli.la', 'mercadolibre.com.ar', 'mercadolibre.com'];
+
+/** URL https cuyo dominio es uno de Mercado Libre o un subdominio suyo (no basta con que termine igual: `evilmeli.la` no vale). */
+export function isAffiliateUrl(value) {
+  if (!isValidHttpsUrl(value)) return false;
+  const { hostname } = new URL(value);
+  return AFFILIATE_HOSTS.some((host) => hostname === host || hostname.endsWith(`.${host}`));
+}
 
 const isText = (value) => typeof value === 'string' && value.trim() !== '';
 const isFlag = (value) => typeof value === 'boolean';
@@ -32,6 +42,7 @@ export function validateCoupon(coupon) {
   if (!isCalendarDate(coupon.publishedAt)) errors.push('publishedAt debe ser AAAA-MM-DD');
   if (!isDateOrAbsent(coupon.expiresAt)) errors.push('expiresAt debe ser AAAA-MM-DD o null');
   if (!isValidHttpsUrl(coupon.url)) errors.push('url debe ser https');
+  else if (!isAffiliateUrl(coupon.url)) errors.push('url debe ser un enlace de Mercado Libre (meli.la o mercadolibre.com.ar)');
   if (!isAbsent(coupon.logo) && !isLocalImage(coupon.logo)) errors.push('logo debe ser un archivo local de assets/img');
   if (!isFlag(coupon.active)) errors.push('active debe ser true o false');
   return errors;

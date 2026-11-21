@@ -1,4 +1,4 @@
-import { siteUrl } from './utils.js?v=7a113a9a';
+import { siteUrl } from './utils.js?v=6e67dc66';
 
 // Copiar código y compartir. Los mensajes se anuncian en la región `aria-live` (#aviso) que ya existe en el HTML:
 // una región insertada junto con su mensaje no se anuncia en los lectores de pantalla.
