@@ -1,4 +1,9 @@
-import { activeSocials, config } from './config.js?v=e094531e';
+import { activeSocials, config } from './config.js?v=689f9192';
+import { initCarousel } from './carousel.js?v=689f9192';
+import { initCoupons } from './coupons.js?v=689f9192';
+import { el } from './dom.js?v=689f9192';
+import { initProducts } from './products.js?v=689f9192';
+import { siteUrl } from './utils.js?v=689f9192';
 
 /** Menú móvil: sin JS el botón queda oculto y la nav visible; con JS se muestra el botón y la nav se alterna. */
 export function initMenu(document) {
@@ -24,24 +29,36 @@ export function initMenu(document) {
   });
 }
 
-/** Rellena las redes del pie con nodos creados (nunca HTML) y muestra el bloque solo si hay alguna. */
-export function initSocial(document, socials) {
-  const container = document.querySelector('[data-social]');
-  const list = container?.querySelector('.social-list');
-  if (!container || !list || socials.length === 0) return;
+function buildSocialItem(document, { key, name, url }) {
+  const link = el(document, 'a', 'social-link');
+  link.href = url;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  link.setAttribute('aria-label', `${name} (se abre en una pestaña nueva)`);
+  const icon = el(document, 'img', 'social-link__icon');
+  icon.alt = '';
+  icon.src = siteUrl(`assets/icons/${key}.svg`);
+  link.append(icon, el(document, 'span', 'social-link__label', name));
+  const item = document.createElement('li');
+  item.append(link);
+  return item;
+}
 
-  for (const { name, url } of socials) {
-    const link = document.createElement('a');
-    link.href = url;
-    link.textContent = name;
-    link.rel = 'noopener noreferrer';
-    link.target = '_blank';
-    link.setAttribute('aria-label', `${name} (se abre en una pestaña nueva)`);
-    const item = document.createElement('li');
-    item.append(link);
-    list.append(item);
+/**
+ * Rellena todos los `[data-social]` (pie, panel de la home e invitación del newsletter) con nodos creados, nunca HTML,
+ * y los muestra solo si hay alguna red. Si el contenedor no trae su `ul.social-list`, la crea.
+ */
+export function initSocial(document, socials) {
+  if (socials.length === 0) return;
+  for (const container of document.querySelectorAll('[data-social]')) {
+    let list = container.querySelector('.social-list');
+    if (!list) {
+      list = el(document, 'ul', 'social-list');
+      container.append(list);
+    }
+    list.replaceChildren(...socials.map((social) => buildSocialItem(document, social)));
+    container.hidden = false;
   }
-  container.hidden = false;
 }
 
 export function initYear(document, now = new Date()) {
@@ -49,10 +66,32 @@ export function initYear(document, now = new Date()) {
   if (year) year.textContent = String(now.getFullYear());
 }
 
-// El guard permite importar el módulo en tests (Node) sin DOM global.
-if (typeof document !== 'undefined') {
-  document.documentElement.classList.add('js');
-  initMenu(document);
-  initSocial(document, activeSocials(config));
-  initYear(document);
+/**
+ * Corre una inicialización aislada: un error (síncrono o de una promesa) se informa con console.warn y no frena a las
+ * demás, así un módulo roto no deja sin menú o sin redes al resto de la página.
+ */
+export async function safeInit(name, init) {
+  try {
+    await init();
+  } catch (error) {
+    console.warn(`[${name}] no se pudo iniciar: ${error.message}`);
+  }
 }
+
+/** Arranca todo lo que la página tenga: menú, redes, año y, si existen sus contenedores, cupones, productos y carruseles. */
+export async function initPage(document, { fetchFn, now = new Date() } = {}) {
+  document.documentElement.classList.add('js');
+  const options = { fetchFn, now };
+  const jobs = [
+    safeInit('menú', () => initMenu(document)),
+    safeInit('redes', () => initSocial(document, activeSocials(config))),
+    safeInit('año', () => initYear(document, now)),
+    ...[...document.querySelectorAll('[data-coupons]')].map((container) => safeInit('cupones', () => initCoupons(container, options))),
+    ...[...document.querySelectorAll('[data-products]')].map((container) => safeInit('productos', () => initProducts(container, options))),
+    ...[...document.querySelectorAll('[data-carousel]')].map((root) => safeInit('carrusel', () => initCarousel(root))),
+  ];
+  await Promise.all(jobs);
+}
+
+// El guard permite importar el módulo en tests (Node) sin DOM global.
+if (typeof document !== 'undefined') initPage(document);

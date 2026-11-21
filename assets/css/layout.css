@@ -10,18 +10,29 @@
 .section { padding-block: var(--space-7); }
 .section--crema { background: var(--color-crema); color: var(--color-tinta); }
 .section--cafe { background: var(--color-cafe); color: var(--color-crema); }
-.section--cafe h2, .section--cafe h3 { color: var(--color-amarillo); }
-.section--cafe a { color: var(--color-amarillo); }
+.section--cafe .btn--ghost { color: var(--color-crema); border-color: var(--color-crema); }
+.section--cafe .btn--ghost:hover { background: var(--color-crema); color: var(--color-cafe); }
+/* :where() deja la especificidad en 0: así las tarjetas crema dentro de una sección marrón pueden fijar sus propios colores
+   (si no, "amarillo sobre crema", que no cumple contraste, ganaría por especificidad) */
+.section--cafe :where(h2, h3) { color: var(--color-amarillo); }
+.section--cafe :where(a:not(.btn)) { color: var(--color-amarillo); }
 .section__title { margin-bottom: var(--space-5); font-size: var(--text-2xl); }
+.section__icon { flex: none; width: 2rem; height: 2rem; object-fit: contain; }
+.section__title .section__icon { display: inline-block; vertical-align: -0.25em; margin-right: var(--space-2); }
+/* Encabezado de sección: título (con ícono opcional) y botón. Móvil: apilados y el botón a todo el ancho; desde 48em en fila */
 .section__header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-3);
   margin-bottom: var(--space-5);
 }
-.section__header .section__title { margin-bottom: 0; }
+.section__header .section__title { flex: 1 1 12rem; min-width: 0; margin-bottom: 0; }
+.section__header .btn { flex: 1 1 100%; }
+@media (min-width: 48em) {
+  .section__header { flex-wrap: nowrap; justify-content: space-between; }
+  .section__header .btn { flex: 0 0 auto; }
+}
 @media (min-width: 64em) { .section { padding-block: var(--space-8); } }
 
 .stack > * + * { margin-top: var(--space-4); }
@@ -35,28 +46,42 @@
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
 }
 .grid--wide { grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
-.grid--2 { grid-template-columns: 1fr; }
-@media (min-width: 48em) { .grid--2 { grid-template-columns: repeat(2, 1fr); } }
+.grid--2 { grid-template-columns: minmax(0, 1fr); } /* minmax(0,…): un código largo no ensancha la columna ni desborda a 320 px */
+@media (min-width: 48em) { .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
-/* Olas: banda azul con una franja amarilla debajo, borde superior ondulado por máscara.
-   Decorativas: usar <div class="wave" aria-hidden="true"></div>. Color de fondo de la página
-   detrás de la ola = el del bloque anterior; la ola se dibuja encima. --wave-flip invierte. */
+/* Olas: banda decorativa con una cresta azul y una franja amarilla debajo, como en el mockup (CSS puro, sin SVG ni url()).
+   Cómo se dibuja: dos elipses con border-radius dentro de una caja con overflow:hidden. ::before = cresta azul, algo corrida
+   a la izquierda; ::after = relleno amarillo con cresta propia, que además tapa la parte baja de la azul y deja el borde inferior
+   siempre amarillo. Se usa con <div class="wave" aria-hidden="true"></div>.
+   Superposición: la parte superior de la caja es transparente y el margin-top negativo la monta sobre el final del bloque
+   anterior, así se ve su color (marrón del hero, crema, etc.) detrás de la cresta. --flip la invierte (para el borde superior
+   de un bloque: monta sobre el inicio del bloque siguiente). */
 .wave {
   position: relative;
+  z-index: 1;
   height: var(--wave-h);
-  background: var(--wave-azul);
-  --wave-size: calc(var(--wave-h) * 3);
-  --wave-mask: radial-gradient(circle at 50% 0, #0000 calc(var(--wave-h) * 0.95), #000 calc(var(--wave-h) * 0.95 + 1px));
-  -webkit-mask: var(--wave-mask) 0 0 / var(--wave-size) 100% repeat-x;
-  mask: var(--wave-mask) 0 0 / var(--wave-size) 100% repeat-x;
+  margin-top: calc(var(--wave-h) * -1);
+  overflow: hidden;
   pointer-events: none;
 }
-.wave::after { /* franja amarilla, desplazada media onda */
-  content: "";
-  position: absolute;
-  inset: 55% 0 0;
+.wave::before,
+.wave::after { content: ""; position: absolute; }
+.wave::before { /* cresta azul: elipse de 130 % de ancho y 200 % de alto; su borde superior es la ola */
+  left: -20%;
+  width: 130%;
+  top: 15%;
+  height: 200%;
+  border-radius: 50%;
+  background: var(--wave-azul);
+}
+.wave::after { /* amarillo: caja con el borde superior elíptico, apoyada en el fondo */
+  left: -10%;
+  width: 120%;
+  top: 55%;
+  bottom: 0;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
   background: var(--wave-amarillo);
 }
-.wave--amarillo { background: var(--wave-amarillo); }
-.wave--amarillo::after { content: none; }
-.wave--flip { transform: scaleY(-1); }
+.wave--amarillo::before { content: none; }
+.wave--amarillo::after { top: 35%; }
+.wave--flip { margin-top: 0; margin-bottom: calc(var(--wave-h) * -1); transform: scaleY(-1); }

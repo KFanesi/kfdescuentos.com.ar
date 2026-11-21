@@ -39,12 +39,20 @@ export function todayLocal(date = new Date()) {
 const DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
 
 // Valida el calendario sin `new Date("AAAA-MM-DD")`, que se interpreta como UTC y corre el día en UTC-3.
-function isCalendarDate(value) {
+/** ¿Es una fecha AAAA-MM-DD que existe en el calendario? */
+export function isCalendarDate(value) {
   const match = typeof value === 'string' ? DATE_PATTERN.exec(value) : null;
   if (!match) return false;
   const [year, month, day] = match.slice(1).map(Number);
   const probe = new Date(year, month - 1, day);
   return probe.getFullYear() === year && probe.getMonth() === month - 1 && probe.getDate() === day;
+}
+
+/** AAAA-MM-DD → DD/MM/AAAA, cortando el texto (sin Date, que correría el día en UTC-3). Una fecha inválida da ''. */
+export function formatDate(value) {
+  if (!isCalendarDate(value)) return '';
+  const [year, month, day] = value.split('-');
+  return `${day}/${month}/${year}`;
 }
 
 /**
@@ -102,4 +110,13 @@ export function writeParams(params) {
   }
   const query = target.toString();
   return query ? `?${query}` : '';
+}
+
+/**
+ * URL absoluta de una ruta del sitio, calculada desde la ubicación de este módulo (`assets/js/`): sirve igual en la raíz
+ * de un dominio que bajo un prefijo de ruta (GitHub Pages de proyecto), sin escribir el prefijo en el código.
+ * Una barra inicial se ignora: la ruta es relativa a la raíz del sitio, no a la del origen.
+ */
+export function siteUrl(path, from = import.meta.url) {
+  return new URL(path.replace(/^\//, ''), new URL('../../', from)).href;
 }

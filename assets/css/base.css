@@ -56,7 +56,11 @@ button { cursor: pointer; }
 }
 .site-header :focus-visible,
 .site-footer :focus-visible,
-.on-dark :focus-visible {
+.on-dark :focus-visible,
+.section--cafe :focus-visible,
+.hero :focus-visible,
+.newsletter :focus-visible,
+.social-panel :focus-visible {
   outline-color: var(--focus-ring-on-dark);
 }
 
@@ -74,21 +78,26 @@ button { cursor: pointer; }
 }
 
 /* Saltar al contenido: invisible hasta recibir foco; tinta sobre amarillo 12.51:1.
-   Aparece abajo a la izquierda, fijo en el viewport: así nunca queda bajo el header sticky, cuyo alto cambia
-   (móvil ~115 px, escritorio ~71 px, y más alto aún sin JS con la nav desplegada). */
+   Aparece ARRIBA a la izquierda, fijo en el viewport y por encima del header sticky (z-index 100): al recibir foco
+   se superpone al header en vez de quedar oculto, y como es position:fixed no depende del alto del header. */
 .skip-link {
   position: fixed;
-  bottom: var(--space-4);
+  top: var(--space-2);
   left: var(--space-2);
-  z-index: 1000;
+  z-index: 1100;
   padding: var(--space-3) var(--space-4);
   background: var(--color-amarillo);
   color: var(--color-tinta);
   font-weight: 700;
+  border: 2px solid var(--color-cafe); /* visible tanto sobre el header marrón como sobre fondo claro */
   border-radius: var(--radius-sm);
-  transform: translateY(300%); /* fuera de pantalla (por debajo) hasta recibir foco */
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-300%); /* fuera de pantalla (por arriba) hasta recibir foco */
 }
-.skip-link:focus { transform: none; outline: 3px solid var(--color-cafe); outline-offset: 2px; }
+.skip-link:focus { transform: none; outline: 3px solid var(--color-crema); outline-offset: 2px; }
+
+/* El atributo hidden siempre gana: sin esto, cualquier display de un componente lo anularía */
+[hidden] { display: none !important; }
 
 /* Región para anuncios dinámicos (aria-live): presente en el DOM, sin ocupar espacio */
 .live-region {

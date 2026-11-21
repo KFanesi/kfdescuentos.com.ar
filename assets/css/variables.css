@@ -17,6 +17,20 @@
    - amarillo sobre azul   =  5.99:1  ola amarilla junto a la azul (decorativo, no texto)
    - verde  sobre crema    =  5.95:1  detalles naturales; también cumple como texto
    - verde  sobre blanco   =  6.45:1
+   Etapa 2 (componentes de la home). Fondos nuevos: --hero-a #4a2005, --hero-b #6e3a0c (degradé del hero y de la banda de
+   newsletter, marrón cálido), --color-gris #6b5a4c (texto secundario y precio tachado). Ratios calculados con la fórmula WCAG:
+   - crema  sobre hero-a   = 12.93:1  texto del hero y del newsletter (extremo oscuro del degradé)
+   - crema  sobre hero-b   =  8.53:1  texto del hero en el extremo claro del degradé (el peor caso sigue sobre 4.5)
+   - blanco sobre hero-b   =  9.24:1
+   - amarillo sobre hero-a =  9.58:1  títulos y énfasis dentro del hero y del newsletter
+   - amarillo sobre hero-b =  6.32:1
+   - crema  sobre hero-b + brillo dorado (amarillo al 25 %, #754d06) = 6.88:1  peor caso con los destellos decorativos
+   - gris   sobre blanco   =  6.58:1  precio tachado y "verificado el..." en tarjetas de producto
+   - gris   sobre crema    =  6.08:1  condiciones y vencimiento en cupones
+   - blanco sobre verde    =  6.45:1  botón de copiar en estado .is-copied (además cambia el texto, no solo el color)
+   - crema  sobre cafe     = 15.71:1  flecha de los botones del carrusel (círculo marrón)
+   - tinta  sobre amarillo = 12.51:1  etiqueta inclinada del hero (.hero__tag) e insignia de descuento
+   - azul   sobre crema    =  8.09:1  "Se aplica desde el enlace" en el cupón
    NO se usa: amarillo sobre crema (no alcanza 3:1), blanco sobre amarillo, tinta sobre cafe (1.07:1). */
 :root {
   /* Paleta */
@@ -27,6 +41,12 @@
   --color-verde: #2f6b2a;
   --color-tinta: #1f1209;
   --color-blanco: #ffffff;
+
+  /* Marrones cálidos del hero y del newsletter (ratios arriba) y gris de texto secundario */
+  --hero-a: #4a2005;
+  --hero-b: #6e3a0c;
+  --hero-glow: #f7d409;
+  --color-gris: #6b5a4c;
 
   /* Colores semánticos (alias de la paleta) */
   --bg-page: var(--color-crema);
@@ -95,8 +115,12 @@
   /* Movimiento */
   --transition: 150ms ease;
 
+  /* Componentes: ancho de tarjeta del carrusel y muesca de los cupones */
+  --card-w: clamp(12.5rem, 72vw, 16rem);
+  --notch: 0.7rem;
+
   /* Olas decorativas (CSS puro, ver layout.css) */
-  --wave-h: clamp(1.5rem, 1rem + 2vw, 3rem);
+  --wave-h: clamp(2.25rem, 1.25rem + 4vw, 4.5rem);
   --wave-azul: var(--color-azul);
   --wave-amarillo: var(--color-amarillo);
 }

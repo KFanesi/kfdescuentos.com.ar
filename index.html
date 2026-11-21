@@ -3,24 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KFDescuentos | Cupones y ofertas de Mercado Libre</title>
-<meta name="description" content="KFDescuentos reúne cupones y ofertas de Mercado Libre. Es un sitio independiente y no es un sitio oficial de Mercado Libre.">
+<title>KFDescuentos | Cupones y descuentos de Mercado Libre</title>
+<meta name="description" content="Cupones y descuentos de Mercado Libre con código para copiar. KFDescuentos es un sitio independiente y no es un sitio oficial de Mercado Libre.">
 <link rel="canonical" href="https://kfanesi.github.io/kfdescuentos.com.ar/">
+<meta name="data-version" content="7e3306f0">
 <link rel="icon" href="/kfdescuentos.com.ar/favicon.svg?v=99f95a8c" type="image/svg+xml">
 <link rel="icon" href="/kfdescuentos.com.ar/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/kfdescuentos.com.ar/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KFDescuentos">
-<meta property="og:title" content="KFDescuentos | Cupones y ofertas de Mercado Libre">
-<meta property="og:description" content="KFDescuentos reúne cupones y ofertas de Mercado Libre. Es un sitio independiente y no es un sitio oficial de Mercado Libre.">
+<meta property="og:title" content="KFDescuentos | Cupones y descuentos de Mercado Libre">
+<meta property="og:description" content="Cupones y descuentos de Mercado Libre con código para copiar. KFDescuentos es un sitio independiente y no es un sitio oficial de Mercado Libre.">
 <meta property="og:url" content="https://kfanesi.github.io/kfdescuentos.com.ar/">
 <meta property="og:locale" content="es_AR">
 <meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/variables.css?v=be5b0b67">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/base.css?v=1848f680">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/layout.css?v=d4679dd1">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/components.css?v=29e6193b">
-<script type="module" src="/kfdescuentos.com.ar/assets/js/app.js?v=e094531e"></script>
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/variables.css?v=8b44aa13">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/base.css?v=cd951855">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/layout.css?v=366fd8db">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/components.css?v=054bdba5">
+<script type="module" src="/kfdescuentos.com.ar/assets/js/app.js?v=689f9192"></script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -45,11 +46,88 @@
   </div>
 </header>
 <main id="contenido" tabindex="-1">
-  <div class="container">
-    <h1>KFDescuentos</h1>
-    <p>Cupones y ofertas de Mercado Libre en un solo lugar. Es un sitio independiente, no oficial de Mercado Libre.</p>
-    <noscript><p>Para ver las ofertas y cupones de esta página necesitás activar JavaScript en tu navegador.</p></noscript>
-  </div>
+  <p class="live-region" id="aviso" role="status" aria-live="polite"></p>
+
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <h1>KFDescuentos <em>cupones y descuentos de Mercado Libre</em></h1>
+        <p class="hero__lead">Reunimos cupones de Mercado Libre y enlaces a sus listas de descuentos en un solo lugar.</p>
+        <a class="btn btn--primary" href="/kfdescuentos.com.ar/cupones/">Explorar cupones</a>
+        <ul class="hero__benefits">
+          <li><img class="hero__check" src="/kfdescuentos.com.ar/assets/icons/check.svg?v=b230622d" alt="" width="24" height="24">Cupones con código para copiar con un toque</li>
+          <li><img class="hero__check" src="/kfdescuentos.com.ar/assets/icons/check.svg?v=b230622d" alt="" width="24" height="24">Enlaces directos a las listas de Mercado Libre</li>
+          <li><img class="hero__check" src="/kfdescuentos.com.ar/assets/icons/check.svg?v=b230622d" alt="" width="24" height="24">Novedades en nuestras redes</li>
+        </ul>
+      </div>
+      <img class="hero__art" src="/kfdescuentos.com.ar/assets/img/taza.svg?v=ef4098f4" alt="" width="520" height="520" fetchpriority="high">
+      <p class="hero__tag" aria-hidden="true">Encontrá tu cupón</p>
+    </div>
+  </section>
+  <div class="wave" aria-hidden="true"></div>
+
+  <section class="section" id="cupones" aria-labelledby="t-cupones">
+    <div class="container">
+      <div class="section__header">
+        <img class="section__icon" src="/kfdescuentos.com.ar/assets/icons/tag.svg?v=d8971fa5" alt="" width="32" height="32">
+        <h2 class="section__title" id="t-cupones">Cupones de descuento</h2>
+        <a class="btn btn--ghost" href="/kfdescuentos.com.ar/cupones/">Ver todos los cupones</a>
+      </div>
+      <p class="affiliate-notice">KFDescuentos es un sitio independiente y no es un sitio oficial de Mercado Libre. Si comprás desde un enlace de esta página, podemos recibir una comisión. Los cupones pertenecen a Mercado Libre y pueden cambiar o vencer.</p>
+      <noscript><p>Para ver los cupones necesitás activar JavaScript en tu navegador.</p></noscript>
+      <ul class="grid grid--2" data-coupons data-limit="4" aria-busy="true"></ul>
+      <p class="empty-state" data-empty hidden>Todavía no hay cupones publicados. Seguinos en nuestras redes para enterarte cuando aparezcan.</p>
+      <p class="error-state" data-error hidden>No pudimos cargar los cupones. Probá de nuevo en un rato.</p>
+    </div>
+  </section>
+
+  <section class="section section--crema" id="destacados" data-featured-section hidden aria-labelledby="t-destacados">
+    <div class="container">
+      <div class="section__header">
+        <img class="section__icon" src="/kfdescuentos.com.ar/assets/icons/star.svg?v=a0383218" alt="" width="32" height="32">
+        <h2 class="section__title" id="t-destacados">Productos destacados</h2>
+        <a class="btn btn--ghost" href="/kfdescuentos.com.ar/productos/">Ver todos los productos</a>
+      </div>
+      <div class="carousel" data-carousel>
+        <button class="carousel__btn carousel__btn--prev" type="button" hidden aria-label="Productos anteriores"></button>
+        <ul class="carousel__track" data-products data-featured data-limit="8" aria-busy="true"></ul>
+        <button class="carousel__btn carousel__btn--next" type="button" hidden aria-label="Productos siguientes"></button>
+      </div>
+      <p class="empty-state" data-empty hidden>Todavía no hay productos destacados.</p>
+      <p class="error-state" data-error hidden>No pudimos cargar los productos. Probá de nuevo en un rato.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="t-como-usar">
+    <div class="container">
+      <h2 class="section__title" id="t-como-usar">Cómo usar un cupón</h2>
+      <ol class="text-measure">
+        <li>Copiá el código del cupón con el botón «Copiar código». Si el cupón se aplica desde el enlace, no hace falta ningún código.</li>
+        <li>Abrí la lista de descuentos en Mercado Libre con el botón «Ver lista en Mercado Libre».</li>
+        <li>Revisá las condiciones de cada cupón antes de usarlo: cada cupón tiene sus propias condiciones y puede vencer.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--cafe">
+    <div class="container">
+      <div class="social-panel" data-social hidden>
+        <h2>Seguinos en nuestras redes</h2>
+        <p>Enterate de los cupones nuevos en nuestras redes.</p>
+        <ul class="social-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter" data-social hidden>
+    <div class="container">
+      <div class="newsletter__text">
+        <h2 class="newsletter__title">Newsletter: próximamente</h2>
+        <p>Todavía no tenemos newsletter. Mientras tanto, enterate de los cupones nuevos en nuestras redes.</p>
+      </div>
+      <ul class="social-list"></ul>
+    </div>
+  </section>
 </main>
 <footer class="site-footer">
   <div class="container site-footer__grid">
@@ -74,10 +152,6 @@
     </section>
     <section class="footer-legal">
       <p class="affiliate-notice">KFDescuentos es un sitio independiente y no es un sitio oficial de Mercado Libre. Si comprás desde un enlace de esta página, podemos recibir una comisión. Los precios y cupones pertenecen a Mercado Libre y pueden cambiar o vencer.</p>
-      <ul>
-        <li><a href="/kfdescuentos.com.ar/privacidad/">Privacidad</a></li>
-        <li><a href="/kfdescuentos.com.ar/terminos/">Términos</a></li>
-      </ul>
       <p class="copyright">© <span data-year>2026</span> KFDescuentos</p>
     </section>
   </div>

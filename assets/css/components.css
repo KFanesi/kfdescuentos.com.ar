@@ -22,8 +22,9 @@
 .btn--primary:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
 .btn--ghost { background: transparent; color: var(--color-cafe); border-color: var(--color-cafe); }  /* sobre claro: 15.71:1 */
 .btn--ghost:hover { background: var(--color-cafe); color: var(--color-crema); }
-.on-dark .btn--ghost, .site-footer .btn--ghost { color: var(--color-crema); border-color: var(--color-crema); }
-.on-dark .btn--ghost:hover, .site-footer .btn--ghost:hover { background: var(--color-crema); color: var(--color-cafe); }
+.on-dark .btn--ghost, .site-footer .btn--ghost, .hero .btn--ghost, .newsletter .btn--ghost, .social-panel .btn--ghost { color: var(--color-crema); border-color: var(--color-crema); }
+.on-dark .btn--ghost:hover, .site-footer .btn--ghost:hover, .hero .btn--ghost:hover, .newsletter .btn--ghost:hover, .social-panel .btn--ghost:hover { background: var(--color-crema); color: var(--color-cafe); }
+.btn.is-copied, .btn.is-copied:hover { background: var(--color-verde); border-color: var(--color-verde); color: var(--color-blanco); box-shadow: var(--shadow-sm); transform: none; } /* blanco sobre verde 6.45:1; el JS además cambia el texto: no se comunica solo con color */
 .btn[disabled], .btn[aria-disabled="true"] { opacity: 0.6; cursor: not-allowed; box-shadow: none; transform: none; }
 
 /* ---------- Insignia (descuento) ---------- */
@@ -180,7 +181,6 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .footer-brand .brand { margin-bottom: var(--space-2); font-size: var(--text-2xl); }
 .footer-lema { font-family: var(--font-display); font-style: italic; font-weight: 700; font-size: var(--text-lg); color: var(--color-amarillo); }
 .footer-social[hidden] { display: none; }
-.social-list { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
 .footer-legal { border-top: 1px solid rgb(251 245 238 / 0.35); padding-top: var(--space-4); }
 .affiliate-notice { max-width: var(--text-max); }
 .copyright { margin: var(--space-3) 0 0; }
@@ -192,4 +192,349 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 @media (min-width: 64em) {
   .site-footer__grid { grid-template-columns: 1.4fr 1fr 1fr; gap: var(--space-6) var(--space-7); }
   .footer-legal { grid-column: 1 / -1; }
+}
+
+/* ---------- Hero ----------
+   Fondo marrón/dorado con degradé y granos de café en CSS puro (sin imágenes). Ratios de texto en variables.css. */
+.hero,
+.newsletter {
+  /* Granos: 5 elipses oscuras con un brillo pequeño, en un mosaico de 17x12 rem */
+  --granos:
+    radial-gradient(ellipse 0.8rem 0.5rem at 10% 20%, #2a0f01 0 68%, #0000 71%),
+    radial-gradient(ellipse 0.35rem 0.16rem at 8.5% 16%, #8a4b12 0 60%, #0000 66%),
+    radial-gradient(ellipse 0.65rem 0.42rem at 48% 62%, #2a0f01 0 68%, #0000 71%),
+    radial-gradient(ellipse 0.3rem 0.14rem at 46.5% 58%, #8a4b12 0 60%, #0000 66%),
+    radial-gradient(ellipse 0.75rem 0.48rem at 82% 28%, #2a0f01 0 68%, #0000 71%),
+    radial-gradient(ellipse 0.32rem 0.15rem at 80.5% 24%, #8a4b12 0 60%, #0000 66%),
+    radial-gradient(ellipse 0.6rem 0.4rem at 24% 84%, #2a0f01 0 68%, #0000 71%),
+    radial-gradient(ellipse 0.7rem 0.45rem at 70% 88%, #2a0f01 0 68%, #0000 71%);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--color-crema);
+  background:
+    radial-gradient(ellipse 55% 90% at 78% 45%, rgb(247 212 9 / 0.22), #0000 70%),
+    linear-gradient(120deg, var(--hero-a) 0%, var(--hero-b) 100%);
+}
+.hero::before,
+.newsletter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--granos);
+  background-size: 17rem 12rem;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.hero { padding-block: var(--space-6) calc(var(--space-6) + var(--wave-h)); } /* el pie queda libre para la ola que se monta encima */
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-5);
+  position: relative;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+@media (min-width: 64em) { .hero__inner { --container-pad: var(--space-6); } }
+.hero__text { min-width: 0; }
+.hero h1 {
+  margin-bottom: var(--space-3);
+  color: var(--color-crema);
+  text-shadow: 0 2px 0 rgb(0 0 0 / 0.35);
+}
+.hero h1 em, .hero h1 mark { background: none; color: var(--color-amarillo); font-style: italic; } /* 9.58:1 sobre el marrón del hero */
+.hero__lead { max-width: 38ch; margin-bottom: var(--space-4); font-size: var(--text-lg); color: var(--color-crema); }
+.hero .btn--primary { min-height: 3rem; padding-inline: var(--space-6); font-size: var(--text-lg); box-shadow: var(--shadow); }
+.hero__benefits { display: grid; gap: var(--space-2); margin: var(--space-5) 0 0; padding: 0; list-style: none; }
+.hero__benefits li { display: flex; align-items: center; gap: var(--space-3); font-weight: 700; color: var(--color-crema); }
+.hero__check { flex: none; width: 1.5rem; height: 1.5rem; object-fit: contain; }
+.hero__art { display: block; justify-self: center; width: min(100%, 15rem); height: auto; aspect-ratio: 1; object-fit: contain; }
+.hero__tag { display: none; } /* móvil: oculta (el mensaje ya está en el título y no hay lugar sin tapar el texto) */
+@media (min-width: 48em) {
+  .hero { padding-block: var(--space-7) calc(var(--space-7) + var(--wave-h)); }
+  .hero__inner { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: var(--space-6); }
+  .hero__art { width: min(100%, 22rem); }
+  .hero__tag {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: var(--container-pad);
+    z-index: 2;
+    max-width: 11.5rem;
+    padding: var(--space-3) var(--space-5) var(--space-3) var(--space-6);
+    background: var(--color-amarillo);
+    color: var(--color-tinta); /* 12.51:1, y no se comunica solo con color */
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 800;
+    line-height: 1.1;
+    clip-path: polygon(12% 0, 100% 0, 100% 100%, 12% 100%, 0 50%); /* forma de etiqueta de precio */
+    transform: rotate(-7deg);
+  }
+  .hero__tag::before { /* ojal de la etiqueta */
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0.85rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-top: -0.3rem;
+    border-radius: 50%;
+    background: var(--hero-b);
+  }
+}
+@media (min-width: 64em) {
+  .hero__art { width: min(100%, 32.5rem); } /* ~520 px */
+  .hero__tag { max-width: 13.5rem; font-size: var(--text-xl); }
+}
+
+/* ---------- Carrusel ---------- */
+.carousel { position: relative; }
+.carousel__track {
+  display: flex;
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-2) var(--space-1) var(--space-4);
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--space-1);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-cafe) transparent;
+  min-height: 24rem; /* reserva el alto antes de que lleguen los datos (evita CLS) */
+}
+.carousel__track::-webkit-scrollbar { height: 0.5rem; }
+.carousel__track::-webkit-scrollbar-thumb { background: var(--color-cafe); border-radius: var(--radius-pill); }
+.carousel__track:focus-visible { outline-offset: 0; }
+.carousel__track > * { flex: 0 0 var(--card-w); scroll-snap-align: start; }
+.carousel__track > .empty-state, .carousel__track > .error-state { flex: 1 0 100%; }
+.carousel__btn {
+  position: absolute;
+  top: calc(var(--card-w) / 2 + var(--space-2)); /* centro aproximado de la imagen cuadrada de la tarjeta */
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: var(--target);
+  height: var(--target);
+  padding: 0;
+  font-size: 0; /* el flecha es CSS; si el JS pone texto o un ícono dentro, no se duplica */
+  background: var(--color-cafe);
+  border: 2px solid var(--color-crema);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  transition: background-color var(--transition), transform var(--transition);
+}
+.carousel__btn::before { /* flecha: crema sobre marrón 15.71:1 */
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  border: solid var(--color-crema);
+  border-width: 0 0 3px 3px;
+}
+.carousel__btn--prev { left: var(--space-1); }
+.carousel__btn--prev::before { transform: translateX(2px) rotate(45deg); }
+.carousel__btn--next { right: var(--space-1); }
+.carousel__btn--next::before { transform: translateX(-2px) rotate(-135deg); }
+.carousel__btn:hover { background: var(--color-tinta); }
+.carousel__btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+@media (min-width: 64em) {
+  .carousel__btn--prev { left: -1.25rem; }
+  .carousel__btn--next { right: -1.25rem; }
+}
+
+/* ---------- Tarjeta de producto ---------- */
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  background: var(--color-blanco);
+  color: var(--color-tinta); /* 18.28:1 */
+  border: 1px solid rgb(51 19 1 / 0.28);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.product-card__media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-crema);
+  border-radius: var(--radius-sm);
+}
+.product-card__media img { width: 100%; height: 100%; object-fit: contain; }
+.product-card__media--empty::before { /* ícono neutro de etiqueta, CSS puro */
+  content: "";
+  width: 4.5rem;
+  height: 3rem;
+  background:
+    radial-gradient(circle at 22% 50%, var(--color-crema) 0 0.28rem, #0000 0.3rem),
+    rgb(51 19 1 / 0.3);
+  clip-path: polygon(28% 0, 100% 0, 100% 100%, 28% 100%, 0 50%);
+}
+.product-card .badge--descuento { position: absolute; top: calc(var(--space-3) + var(--space-2)); right: calc(var(--space-3) + var(--space-2)); z-index: 1; } /* badge hijo directo de la tarjeta */
+.product-card__media .badge--descuento { top: var(--space-2); right: var(--space-2); } /* badge dentro del contenedor de la imagen */
+.product-card .product-card__title { margin: 0; min-height: 2.6em; font-family: var(--font-body); font-size: var(--text-base); font-weight: 700; line-height: 1.3; color: var(--color-tinta); }
+.product-card .product-card__title a { color: var(--color-tinta); }
+.product-card__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-2); margin: 0; }
+.price { font-size: var(--text-lg); font-weight: 800; color: var(--color-tinta); }
+.price--old { font-size: var(--text-sm); font-weight: 400; color: var(--color-gris); text-decoration: line-through; } /* 6.58:1 sobre blanco; además tachado: no es solo color */
+.product-card .product-card__checked { margin: 0; font-size: var(--text-xs); color: var(--color-gris); }
+.product-card__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: auto; padding-top: var(--space-2); }
+.product-card__actions .btn { flex: 1 1 auto; }
+
+/* ---------- Tarjeta de cupón (ticket) ----------
+   Muescas laterales con máscara: son agujeros reales, así se ve el fondo que haya detrás (marrón o crema). Borde punteado. */
+.coupon-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-4) calc(var(--space-4) + var(--notch));
+  background: var(--color-crema);
+  color: var(--color-tinta); /* 16.89:1 */
+  border: 2px dashed var(--color-cafe);
+  border-radius: var(--radius);
+  -webkit-mask:
+    radial-gradient(circle at 0 50%, #0000 var(--notch), #000 calc(var(--notch) + 1px)) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 50%, #0000 var(--notch), #000 calc(var(--notch) + 1px)) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle at 0 50%, #0000 var(--notch), #000 calc(var(--notch) + 1px)) left / 51% 100% no-repeat,
+    radial-gradient(circle at 100% 50%, #0000 var(--notch), #000 calc(var(--notch) + 1px)) right / 51% 100% no-repeat;
+}
+.coupon-card .coupon-card__brand { margin: 0; font-size: var(--text-sm); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-cafe); }
+.coupon-card .coupon-card__discount { margin: 0; font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; line-height: 1.1; color: var(--color-cafe); }
+.coupon-card__description { margin: 0; font-size: var(--text-base); }
+.coupon-card .coupon-card__conditions { margin: 0; font-size: var(--text-xs); color: var(--color-gris); } /* 6.08:1 sobre crema */
+.coupon-card .coupon-card__expires { margin: 0; font-size: var(--text-xs); font-weight: 700; color: var(--color-tinta); }
+.coupon-card__code { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; }
+.coupon-card__code code {
+  display: inline-block;
+  max-width: 100%;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-blanco);
+  color: var(--color-tinta);
+  border: 2px dotted var(--color-cafe);
+  border-radius: var(--radius-sm);
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  overflow-wrap: anywhere;
+  user-select: all; /* un toque o clic selecciona el código entero: copia manual fácil */
+  -webkit-user-select: all;
+}
+.coupon-card .coupon-card__via-link { margin: 0; font-size: var(--text-sm); font-weight: 700; color: var(--color-azul); } /* 8.09:1 sobre crema */
+.coupon-card__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: auto; padding-top: var(--space-2); }
+.coupon-card__actions .btn { flex: 1 1 auto; }
+/* Botones fantasma dentro de tarjetas crema: siempre marrón, aunque la sección sea marrón (ahí el ghost por defecto es crema) */
+.coupon-card .btn.btn--ghost, .product-card .btn.btn--ghost { color: var(--color-cafe); border-color: var(--color-cafe); }
+.coupon-card .btn.btn--ghost:hover, .product-card .btn.btn--ghost:hover { background: var(--color-cafe); color: var(--color-crema); }
+.coupon-card .btn.is-copied, .coupon-card .btn.is-copied:hover { background: var(--color-verde); border-color: var(--color-verde); color: var(--color-blanco); }
+/* El foco dentro de las tarjetas (fondo claro) usa el anillo marrón aunque la sección sea marrón */
+.section--cafe .coupon-card :focus-visible, .section--cafe .product-card :focus-visible, .section--cafe .empty-state :focus-visible, .section--cafe .error-state :focus-visible { outline-color: var(--focus-ring); }
+
+/* ---------- Estados: carga, vacío y error ---------- */
+.skeleton,
+.product-card.skeleton,
+.coupon-card.skeleton {
+  min-height: 12rem; /* altura reservada: el contenido real no empuja el resto de la página (CLS) */
+  background: linear-gradient(100deg, #efe4d3 30%, #f8f0e3 50%, #efe4d3 70%) 0 0 / 200% 100%;
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: none;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+.carousel__track .skeleton { min-height: 24rem; }
+.grid .skeleton { min-height: 15rem; }
+@keyframes skeleton-shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+@media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } }
+
+.empty-state,
+.error-state {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: auto;
+  padding: var(--space-6) var(--space-4);
+  background: var(--color-crema);
+  color: var(--color-tinta);
+  border: 2px dashed var(--color-cafe);
+  border-radius: var(--radius);
+  text-align: center;
+}
+.error-state { background: var(--color-blanco); border-style: solid; border-width: 3px; } /* sólido y más grueso: distinto del vacío sin depender del color */
+.empty-state :where(h2, h3, h4), .error-state :where(h2, h3, h4) { margin-bottom: var(--space-2); color: var(--color-cafe); }
+.empty-state > :last-child, .error-state > :last-child { margin-bottom: 0; }
+.empty-state .btn, .error-state .btn { margin-top: var(--space-3); }
+
+/* ---------- Redes: panel y lista (también dentro del footer) ---------- */
+.social-list { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3) var(--space-5); margin: 0; padding: 0; list-style: none; }
+.social-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: var(--target);
+  min-height: var(--target);
+  padding: var(--space-1);
+  border-radius: var(--radius);
+  color: var(--color-crema); /* 15.71:1 sobre marrón */
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: transform var(--transition);
+}
+.social-link:hover { transform: translateY(-2px); }
+.social-link:hover .social-link__label { text-decoration: underline; text-decoration-thickness: 2px; } /* no solo hover: el nombre siempre está a la vista */
+.social-link__icon { width: 3.5rem; height: 3.5rem; border-radius: 50%; object-fit: contain; box-shadow: 0 0 0 2px rgb(251 245 238 / 0.55); }
+.social-link__label { overflow-wrap: anywhere; }
+.social-panel {
+  padding: var(--space-5) var(--space-4);
+  background: var(--color-cafe);
+  color: var(--color-crema);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+.social-panel :where(h2, h3) { margin-bottom: var(--space-4); font-size: var(--text-xl); color: var(--color-amarillo); } /* 11.65:1 */
+/* Dentro del footer: más compacto y alineado a la izquierda; la regla del footer para "li a" (inline-flex, padding) no lo pisa */
+.footer-social .social-list, .site-footer .social-list { justify-content: flex-start; gap: var(--space-2) var(--space-4); }
+.site-footer .social-link { display: flex; padding: var(--space-1); min-height: var(--target); }
+.site-footer .social-link__icon { width: 2.75rem; height: 2.75rem; }
+
+/* ---------- Banda de newsletter "Próximamente": sin formulario, solo mensaje y redes ---------- */
+.newsletter {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+  padding-block: var(--space-7);
+  padding-inline: max(var(--container-pad), calc((100% - var(--container-max)) / 2 + var(--container-pad)));
+  background:
+    radial-gradient(ellipse 50% 100% at 10% 50%, rgb(247 212 9 / 0.18), #0000 70%),
+    linear-gradient(110deg, var(--color-cafe) 0%, var(--hero-a) 55%, var(--hero-b) 100%);
+}
+.newsletter > .container { display: grid; gap: var(--space-5); align-items: center; max-width: none; padding-inline: 0; }
+.newsletter__text { max-width: 36rem; color: var(--color-crema); }
+.newsletter__text p { margin: 0; }
+.newsletter .newsletter__title { margin-bottom: var(--space-2); font-size: var(--text-2xl); color: var(--color-amarillo); } /* 9.58:1 */
+@media (min-width: 64em) {
+  .newsletter, .newsletter > .container { grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-7); }
+  .newsletter > .container { grid-column: 1 / -1; }
+  .newsletter .social-list { justify-content: flex-end; }
+}
+
+/* Tarjeta a la que lleva un enlace compartido (?id=...). El ticket usa mask, que recorta sombras y contornos: se destaca
+   con el fondo. Tinta (#1f1209) sobre #fff3b0: 15.9:1. No depende solo del color: el JS además hace scrollIntoView. */
+.coupon-card.is-highlighted,
+.product-card.is-highlighted {
+  background: #fff3b0;
 }
