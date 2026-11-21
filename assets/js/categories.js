@@ -1,6 +1,6 @@
-import { loadCollection } from './data.js?v=eae5bc3b';
-import { el } from './dom.js?v=eae5bc3b';
-import { validateProduct } from './schema.js?v=eae5bc3b';
+import { loadCollection } from './data.js?v=ccd82370';
+import { el } from './dom.js?v=ccd82370';
+import { validateProduct } from './schema.js?v=ccd82370';
 
 // Cantidad de productos por categoría en `ul[data-categories]`: cada `li[data-category="<id>"]` con un `[data-count]`.
 // Cuenta solo lo publicable (activo y sin vencer). Si la carga falla, queda el texto estático del HTML.

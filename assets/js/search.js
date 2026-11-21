@@ -1,4 +1,4 @@
-import { discountPercent, normalizeText } from './utils.js?v=eae5bc3b';
+import { discountPercent, normalizeText } from './utils.js?v=ccd82370';
 
 // Búsqueda, filtro, orden y paginación de los listados. Todo es puro (sin DOM) y nunca modifica las listas que recibe.
 
