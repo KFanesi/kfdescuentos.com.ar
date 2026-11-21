@@ -83,6 +83,12 @@ export function normalizeText(text) {
   return text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/\s+/g, ' ').trim();
 }
 
+/** Entero mayor a 0 leído de un atributo (`data-limit`, `data-page-size`); cualquier otra cosa da null. */
+export function positiveInt(value) {
+  const number = Number.parseInt(value, 10);
+  return number > 0 ? number : null;
+}
+
 const cleanValue = (key, value) => {
   if (typeof value !== 'string') return null;
   const trimmed = value.trim();

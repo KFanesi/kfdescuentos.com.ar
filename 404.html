@@ -17,11 +17,11 @@
 <meta property="og:url" content="https://kfanesi.github.io/kfdescuentos.com.ar/404.html">
 <meta property="og:locale" content="es_AR">
 <meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/variables.css?v=8b44aa13">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/base.css?v=cd951855">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/layout.css?v=366fd8db">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/components.css?v=054bdba5">
-<script type="module" src="/kfdescuentos.com.ar/assets/js/app.js?v=689f9192"></script>
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/variables.css?v=bf3aa8a7">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/base.css?v=1cd939da">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/layout.css?v=6cfc7581">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/components.css?v=691bd4ec">
+<script type="module" src="/kfdescuentos.com.ar/assets/js/app.js?v=eae5bc3b"></script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -46,12 +46,21 @@
   </div>
 </header>
 <main id="contenido" tabindex="-1">
-  <div class="container">
-    <h1>Página no encontrada</h1>
-    <p>La página que buscás no existe o cambió de lugar.</p>
-    <p><a href="/kfdescuentos.com.ar/">Volver al inicio</a></p>
-    <noscript><p>Para ver las ofertas y cupones de esta página necesitás activar JavaScript en tu navegador.</p></noscript>
-  </div>
+  <p class="live-region" id="aviso" role="status" aria-live="polite"></p>
+  <section class="section">
+    <div class="container">
+      <div class="notfound">
+        <img src="/kfdescuentos.com.ar/assets/img/grano.svg?v=9acd4dff" alt="" width="64" height="64">
+        <h1>Página no encontrada</h1>
+        <p>La página que buscás no existe o cambió de lugar. Podés volver al inicio o mirar los cupones.</p>
+        <div class="notfound__actions">
+          <a class="btn btn--primary" href="/kfdescuentos.com.ar/">Volver al inicio</a>
+          <a class="btn btn--ghost" href="/kfdescuentos.com.ar/cupones/">Ver cupones</a>
+        </div>
+        <noscript><p>Algunas partes del sitio, como los enlaces a nuestras redes, necesitan JavaScript activado.</p></noscript>
+      </div>
+    </div>
+  </section>
 </main>
 <footer class="site-footer">
   <div class="container site-footer__grid">

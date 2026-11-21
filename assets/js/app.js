@@ -1,9 +1,10 @@
-import { activeSocials, config } from './config.js?v=689f9192';
-import { initCarousel } from './carousel.js?v=689f9192';
-import { initCoupons } from './coupons.js?v=689f9192';
-import { el } from './dom.js?v=689f9192';
-import { initProducts } from './products.js?v=689f9192';
-import { siteUrl } from './utils.js?v=689f9192';
+import { activeSocials, config } from './config.js?v=eae5bc3b';
+import { initCarousel } from './carousel.js?v=eae5bc3b';
+import { initCategories } from './categories.js?v=eae5bc3b';
+import { initCoupons } from './coupons.js?v=eae5bc3b';
+import { el } from './dom.js?v=eae5bc3b';
+import { initProducts } from './products.js?v=eae5bc3b';
+import { siteUrl } from './utils.js?v=eae5bc3b';
 
 /** Menú móvil: sin JS el botón queda oculto y la nav visible; con JS se muestra el botón y la nav se alterna. */
 export function initMenu(document) {
@@ -45,7 +46,7 @@ function buildSocialItem(document, { key, name, url }) {
 }
 
 /**
- * Rellena todos los `[data-social]` (pie, panel de la home e invitación del newsletter) con nodos creados, nunca HTML,
+ * Rellena todos los `[data-social]` (pie, panel de la home y página de contacto) con nodos creados, nunca HTML,
  * y los muestra solo si hay alguna red. Si el contenedor no trae su `ul.social-list`, la crea.
  */
 export function initSocial(document, socials) {
@@ -78,7 +79,7 @@ export async function safeInit(name, init) {
   }
 }
 
-/** Arranca todo lo que la página tenga: menú, redes, año y, si existen sus contenedores, cupones, productos y carruseles. */
+/** Arranca todo lo que la página tenga: menú, redes, año y, si existen sus contenedores, cupones, productos, categorías y carruseles. */
 export async function initPage(document, { fetchFn, now = new Date() } = {}) {
   document.documentElement.classList.add('js');
   const options = { fetchFn, now };
@@ -88,6 +89,7 @@ export async function initPage(document, { fetchFn, now = new Date() } = {}) {
     safeInit('año', () => initYear(document, now)),
     ...[...document.querySelectorAll('[data-coupons]')].map((container) => safeInit('cupones', () => initCoupons(container, options))),
     ...[...document.querySelectorAll('[data-products]')].map((container) => safeInit('productos', () => initProducts(container, options))),
+    ...[...document.querySelectorAll('ul[data-categories]')].map((list) => safeInit('categorías', () => initCategories(list, options))),
     ...[...document.querySelectorAll('[data-carousel]')].map((root) => safeInit('carrusel', () => initCarousel(root))),
   ];
   await Promise.all(jobs);

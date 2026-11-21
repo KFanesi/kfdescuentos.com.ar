@@ -59,7 +59,7 @@ button { cursor: pointer; }
 .on-dark :focus-visible,
 .section--cafe :focus-visible,
 .hero :focus-visible,
-.newsletter :focus-visible,
+.page-header :focus-visible,
 .social-panel :focus-visible {
   outline-color: var(--focus-ring-on-dark);
 }

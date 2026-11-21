@@ -3,25 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Categorías | KFDescuentos</title>
-<meta name="description" content="Categorías de ofertas y cupones de Mercado Libre en KFDescuentos, un sitio independiente. Esta sección está en construcción.">
-<meta name="robots" content="noindex">
+<title>Categorías de productos | KFDescuentos</title>
+<meta name="description" content="Categorías de productos de Mercado Libre en KFDescuentos: tecnología, hogar, electrodomésticos, moda, deportes y más. Un sitio independiente, no oficial.">
 <link rel="canonical" href="https://kfanesi.github.io/kfdescuentos.com.ar/categorias/">
+<meta name="data-version" content="7e3306f0">
 <link rel="icon" href="/kfdescuentos.com.ar/favicon.svg?v=99f95a8c" type="image/svg+xml">
 <link rel="icon" href="/kfdescuentos.com.ar/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/kfdescuentos.com.ar/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KFDescuentos">
-<meta property="og:title" content="Categorías | KFDescuentos">
-<meta property="og:description" content="Categorías de ofertas y cupones de Mercado Libre en KFDescuentos, un sitio independiente. Esta sección está en construcción.">
+<meta property="og:title" content="Categorías de productos | KFDescuentos">
+<meta property="og:description" content="Categorías de productos de Mercado Libre en KFDescuentos: tecnología, hogar, electrodomésticos, moda, deportes y más. Un sitio independiente, no oficial.">
 <meta property="og:url" content="https://kfanesi.github.io/kfdescuentos.com.ar/categorias/">
 <meta property="og:locale" content="es_AR">
 <meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/variables.css?v=8b44aa13">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/base.css?v=cd951855">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/layout.css?v=366fd8db">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/components.css?v=054bdba5">
-<script type="module" src="/kfdescuentos.com.ar/assets/js/app.js?v=689f9192"></script>
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/variables.css?v=bf3aa8a7">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/base.css?v=1cd939da">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/layout.css?v=6cfc7581">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/components.css?v=691bd4ec">
+<script type="module" src="/kfdescuentos.com.ar/assets/js/app.js?v=eae5bc3b"></script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -46,11 +46,69 @@
   </div>
 </header>
 <main id="contenido" tabindex="-1">
-  <div class="container">
-    <h1>Categorías</h1>
-    <p>Esta sección está en construcción.</p>
-    <noscript><p>Para ver las ofertas y cupones de esta página necesitás activar JavaScript en tu navegador.</p></noscript>
+  <p class="live-region" id="aviso" role="status" aria-live="polite"></p>
+  <div class="page-header page-header--wave">
+    <div class="container">
+      <h1>Categorías</h1>
+      <p class="page-header__lead">Explorá los productos de Mercado Libre por categoría.</p>
+    </div>
   </div>
+  <div class="wave" aria-hidden="true"></div>
+
+  <section class="section" aria-labelledby="t-categorias">
+    <div class="container">
+      <h2 class="visually-hidden" id="t-categorias">Lista de categorías</h2>
+      <p class="text-measure">Elegí una categoría para ver los productos que publicamos en ella.</p>
+      <noscript><p>Para ver cuántos productos hay en cada categoría necesitás activar JavaScript en tu navegador.</p></noscript>
+      <ul class="grid grid--cards" data-categories>
+        <li class="card category-card" data-category="tecnologia">
+          <h2><a href="/kfdescuentos.com.ar/productos/?categoria=tecnologia">Tecnología</a></h2>
+          <p>Celulares, computación, audio, televisores y otros dispositivos electrónicos.</p>
+          <p class="category-card__count" data-count>Ver productos</p>
+        </li>
+        <li class="card category-card" data-category="hogar">
+          <h2><a href="/kfdescuentos.com.ar/productos/?categoria=hogar">Hogar</a></h2>
+          <p>Muebles, decoración, cocina, baño y artículos para la casa.</p>
+          <p class="category-card__count" data-count>Ver productos</p>
+        </li>
+        <li class="card category-card" data-category="electrodomesticos">
+          <h2><a href="/kfdescuentos.com.ar/productos/?categoria=electrodomesticos">Electrodomésticos</a></h2>
+          <p>Heladeras, lavarropas, cocinas, microondas y pequeños electrodomésticos.</p>
+          <p class="category-card__count" data-count>Ver productos</p>
+        </li>
+        <li class="card category-card" data-category="moda">
+          <h2><a href="/kfdescuentos.com.ar/productos/?categoria=moda">Moda</a></h2>
+          <p>Ropa y calzado para toda la familia.</p>
+          <p class="category-card__count" data-count>Ver productos</p>
+        </li>
+        <li class="card category-card" data-category="deportes">
+          <h2><a href="/kfdescuentos.com.ar/productos/?categoria=deportes">Deportes</a></h2>
+          <p>Indumentaria, calzado y equipamiento para actividad física y deportes.</p>
+          <p class="category-card__count" data-count>Ver productos</p>
+        </li>
+        <li class="card category-card" data-category="herramientas">
+          <h2><a href="/kfdescuentos.com.ar/productos/?categoria=herramientas">Herramientas</a></h2>
+          <p>Herramientas manuales y eléctricas, y materiales para obra y mantenimiento.</p>
+          <p class="category-card__count" data-count>Ver productos</p>
+        </li>
+        <li class="card category-card" data-category="belleza">
+          <h2><a href="/kfdescuentos.com.ar/productos/?categoria=belleza">Belleza</a></h2>
+          <p>Perfumes, maquillaje, cuidado de la piel y el cabello.</p>
+          <p class="category-card__count" data-count>Ver productos</p>
+        </li>
+        <li class="card category-card" data-category="accesorios">
+          <h2><a href="/kfdescuentos.com.ar/productos/?categoria=accesorios">Accesorios</a></h2>
+          <p>Relojes, bolsos, mochilas, anteojos y otros complementos.</p>
+          <p class="category-card__count" data-count>Ver productos</p>
+        </li>
+        <li class="card category-card" data-category="otros">
+          <h2><a href="/kfdescuentos.com.ar/productos/?categoria=otros">Otros</a></h2>
+          <p>Ofertas y cupones que no encajan en las demás categorías.</p>
+          <p class="category-card__count" data-count>Ver productos</p>
+        </li>
+      </ul>
+    </div>
+  </section>
 </main>
 <footer class="site-footer">
   <div class="container site-footer__grid">

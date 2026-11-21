@@ -1,16 +1,12 @@
-import { bindActions } from './actions.js?v=689f9192';
-import { loadCollection } from './data.js?v=689f9192';
-import { readParams } from './utils.js?v=689f9192';
+import { bindActions } from './actions.js?v=eae5bc3b';
+import { loadCollection } from './data.js?v=eae5bc3b';
+import { mountListing } from './listing.js?v=eae5bc3b';
+import { positiveInt, readParams } from './utils.js?v=eae5bc3b';
 
 // Ciclo común de los listados de cupones y productos: cargar, dibujar y mostrar el estado (cargando, vacío, error).
 // Contrato con el HTML: el contenedor es un <ul> dentro de una <section> que puede traer `[data-empty]` y `[data-error]`
 // (hermanos, con `hidden` de entrada). Si el contenedor está dentro de `[data-featured-section]`, esa sección se oculta
 // cuando no hay nada que mostrar.
-
-const positiveInt = (value) => {
-  const number = Number.parseInt(value, 10);
-  return number > 0 ? number : null;
-};
 
 // ?id=<id>: lo que abre un enlace compartido. Resalta la tarjeta y lleva hasta ella.
 function highlightFromUrl(container, view) {
@@ -22,10 +18,13 @@ function highlightFromUrl(container, view) {
 }
 
 /**
- * `spec`: { collection, validator, withCategories, select, buildCard, section, titleOf }.
- * `options`: { fetchFn, now } (inyectables para probar). No rechaza nunca: el fallo de carga es un estado más.
+ * `spec`: { collection, validator, withCategories, select, buildCard, section, titleOf, searchFields, crossLinkCoupons }.
+ * Con `data-paginated` en el contenedor es un listado con filtros y "Cargar más" (listing.js); sin él, el de la home
+ * (`data-limit`). `options`: { fetchFn, now } (inyectables para probar). No rechaza nunca: el fallo de carga es un estado más.
  */
-export async function mountList(container, spec, { fetchFn, now } = {}) {
+export async function mountList(container, spec, options = {}) {
+  if (container.hasAttribute('data-paginated')) return mountListing(container, spec, options);
+  const { fetchFn, now } = options;
   const { ownerDocument: document } = container;
   const scope = container.closest('section') ?? container.parentElement;
   const featuredSection = container.closest('[data-featured-section]');

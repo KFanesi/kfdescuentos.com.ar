@@ -22,8 +22,8 @@
 .btn--primary:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
 .btn--ghost { background: transparent; color: var(--color-cafe); border-color: var(--color-cafe); }  /* sobre claro: 15.71:1 */
 .btn--ghost:hover { background: var(--color-cafe); color: var(--color-crema); }
-.on-dark .btn--ghost, .site-footer .btn--ghost, .hero .btn--ghost, .newsletter .btn--ghost, .social-panel .btn--ghost { color: var(--color-crema); border-color: var(--color-crema); }
-.on-dark .btn--ghost:hover, .site-footer .btn--ghost:hover, .hero .btn--ghost:hover, .newsletter .btn--ghost:hover, .social-panel .btn--ghost:hover { background: var(--color-crema); color: var(--color-cafe); }
+.on-dark .btn--ghost, .site-footer .btn--ghost, .page-header .btn--ghost, .hero .btn--ghost, .social-panel .btn--ghost { color: var(--color-crema); border-color: var(--color-crema); }
+.on-dark .btn--ghost:hover, .site-footer .btn--ghost:hover, .page-header .btn--ghost:hover, .hero .btn--ghost:hover, .social-panel .btn--ghost:hover { background: var(--color-crema); color: var(--color-cafe); }
 .btn.is-copied, .btn.is-copied:hover { background: var(--color-verde); border-color: var(--color-verde); color: var(--color-blanco); box-shadow: var(--shadow-sm); transform: none; } /* blanco sobre verde 6.45:1; el JS además cambia el texto: no se comunica solo con color */
 .btn[disabled], .btn[aria-disabled="true"] { opacity: 0.6; cursor: not-allowed; box-shadow: none; transform: none; }
 
@@ -197,7 +197,7 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 /* ---------- Hero ----------
    Fondo marrón/dorado con degradé y granos de café en CSS puro (sin imágenes). Ratios de texto en variables.css. */
 .hero,
-.newsletter {
+.page-header {
   /* Granos: 5 elipses oscuras con un brillo pequeño, en un mosaico de 17x12 rem */
   --granos:
     radial-gradient(ellipse 0.8rem 0.5rem at 10% 20%, #2a0f01 0 68%, #0000 71%),
@@ -217,7 +217,7 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
     linear-gradient(120deg, var(--hero-a) 0%, var(--hero-b) 100%);
 }
 .hero::before,
-.newsletter::before {
+.page-header::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -511,30 +511,202 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .site-footer .social-link { display: flex; padding: var(--space-1); min-height: var(--target); }
 .site-footer .social-link__icon { width: 2.75rem; height: 2.75rem; }
 
-/* ---------- Banda de newsletter "Próximamente": sin formulario, solo mensaje y redes ---------- */
-.newsletter {
-  display: grid;
-  gap: var(--space-5);
-  align-items: center;
-  padding-block: var(--space-7);
-  padding-inline: max(var(--container-pad), calc((100% - var(--container-max)) / 2 + var(--container-pad)));
-  background:
-    radial-gradient(ellipse 50% 100% at 10% 50%, rgb(247 212 9 / 0.18), #0000 70%),
-    linear-gradient(110deg, var(--color-cafe) 0%, var(--hero-a) 55%, var(--hero-b) 100%);
-}
-.newsletter > .container { display: grid; gap: var(--space-5); align-items: center; max-width: none; padding-inline: 0; }
-.newsletter__text { max-width: 36rem; color: var(--color-crema); }
-.newsletter__text p { margin: 0; }
-.newsletter .newsletter__title { margin-bottom: var(--space-2); font-size: var(--text-2xl); color: var(--color-amarillo); } /* 9.58:1 */
-@media (min-width: 64em) {
-  .newsletter, .newsletter > .container { grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-7); }
-  .newsletter > .container { grid-column: 1 / -1; }
-  .newsletter .social-list { justify-content: flex-end; }
-}
-
 /* Tarjeta a la que lleva un enlace compartido (?id=...). El ticket usa mask, que recorta sombras y contornos: se destaca
    con el fondo. Tinta (#1f1209) sobre #fff3b0: 15.9:1. No depende solo del color: el JS además hace scrollIntoView. */
 .coupon-card.is-highlighted,
 .product-card.is-highlighted {
   background: #fff3b0;
+}
+
+/* =====================================================================================================================
+   Páginas internas (etapa 3): /cupones/, /productos/, /categorias/, /contacto/ y /404.html
+   ===================================================================================================================== */
+
+/* ---------- Cabecera de página: banda marrón baja con el degradé y los granos del hero (comparte su bloque más arriba) ----------
+   Con <div class="wave" aria-hidden="true"></div> justo después, la ola se monta sobre el pie: el pie reserva el alto de la ola
+   (con :has() o con la clase .page-header--wave, por si el navegador no soporta :has()). Ratios en variables.css. */
+.page-header,
+.page-header + .wave { --wave-h: var(--wave-h-sm); }
+.page-header {
+  padding-block: var(--space-5);
+  padding-inline: max(var(--container-pad), calc((100% - var(--container-max)) / 2 + var(--container-pad)));
+}
+.page-header:has(+ .wave),
+.page-header--wave { padding-bottom: calc(var(--space-5) + var(--wave-h)); }
+.page-header > .container { max-width: none; padding-inline: 0; }
+.page-header h1 {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-2xl);
+  color: var(--color-crema); /* 12.93:1 en el extremo oscuro, 8.53:1 en el claro */
+  text-shadow: 0 2px 0 rgb(0 0 0 / 0.35);
+}
+.page-header h1 em, .page-header h1 mark { background: none; color: var(--color-amarillo); font-style: italic; } /* 9.58:1 / 6.32:1 */
+.page-header__lead,
+.page-header p { max-width: 60ch; margin: 0; font-size: var(--text-lg); color: var(--color-crema); }
+.page-header h1 + p { margin-top: var(--space-2); }
+.page-header a:not(.btn) { color: var(--color-amarillo); }
+@media (min-width: 48em) {
+  .page-header { padding-block: var(--space-6); }
+  .page-header:has(+ .wave),
+  .page-header--wave { padding-bottom: calc(var(--space-6) + var(--wave-h)); }
+}
+
+/* ---------- Filtros ----------
+   Móvil: una columna (cada campo a todo el ancho); desde 48em una fila que se parte sola si no caben. Etiquetas siempre visibles. */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-4);
+  margin: 0 0 var(--space-5);
+  padding: var(--space-4);
+  background: var(--color-blanco);
+  color: var(--color-tinta);
+  border: 1px solid var(--color-cafe);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.filters__field { display: flex; flex: 1 1 100%; flex-direction: column; gap: var(--space-1); min-width: 0; }
+.filters__field label { font-size: var(--text-sm); font-weight: 700; line-height: 1.3; color: var(--color-cafe); } /* 17.01:1 */
+.filters input[type="search"],
+.filters select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--target);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-blanco);
+  color: var(--color-tinta); /* 18.28:1 */
+  border: var(--border-width) solid var(--color-cafe); /* 17.01:1 (3:1 exigido a los bordes de campos) */
+  border-radius: var(--radius-sm);
+  -webkit-appearance: none; /* misma apariencia en Chromium y WebKit: la flecha del select se dibuja abajo */
+  appearance: none;
+}
+.filters input::placeholder { color: var(--color-gris); opacity: 1; } /* 6.58:1 sobre blanco */
+.filters select {
+  padding-right: 2.75rem; /* lugar para la flecha */
+  text-overflow: ellipsis;
+  cursor: pointer;
+  /* Flecha en CSS puro: dos triángulos de 0.5rem (uno con 45deg y otro con 135deg) que juntos forman una "v", color marrón 17.01:1 */
+  background-image:
+    linear-gradient(45deg, #0000 50%, var(--color-cafe) 50%),
+    linear-gradient(135deg, var(--color-cafe) 50%, #0000 50%);
+  background-position: calc(100% - 1.5rem) 50%, calc(100% - 1rem) 50%;
+  background-size: 0.5rem 0.5rem, 0.5rem 0.5rem;
+  background-repeat: no-repeat;
+}
+.filters input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+.filters :is(input[type="search"], select):focus-visible { outline-offset: 0; } /* el anillo marrón (15.71:1) no queda recortado por la caja */
+.filters__actions { display: flex; flex: 1 1 100%; flex-wrap: wrap; gap: var(--space-2); }
+.filters__actions .btn { flex: 1 1 auto; }
+@media (min-width: 48em) {
+  .filters__field { flex: 1 1 12rem; }
+  .filters__field:has(input[type="search"]) { flex-grow: 2; flex-basis: 16rem; }
+  .filters__actions { flex: 0 0 auto; flex-wrap: nowrap; }
+  .filters__actions .btn { flex: 0 0 auto; }
+}
+
+/* ---------- Recuento y aviso de resultados ---------- */
+.results-count { margin: 0 0 var(--space-4); font-size: var(--text-sm); font-weight: 600; color: var(--color-gris); } /* 6.08:1 sobre crema */
+.results-note {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-crema);
+  color: var(--color-tinta); /* 16.89:1 */
+  border: var(--border-width) solid var(--color-cafe); /* 15.71:1: se distingue de la página crema por el borde */
+  border-left-width: 0.5rem; /* franja gruesa a la izquierda: señal que no depende del color de relleno */
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+.results-note a { font-weight: 700; color: var(--color-azul); } /* 8.09:1 sobre crema */
+
+/* ---------- Estados en páginas internas (los estilos base están en "Estados: carga, vacío y error") ---------- */
+.container > .empty-state,
+.container > .error-state { margin-block: var(--space-5); }
+.empty-state.noresults { background: var(--color-blanco); border-style: dotted; } /* "sin resultados para tu búsqueda": distinto del vacío de datos */
+.empty-state.noresults p { margin-bottom: var(--space-2); }
+
+/* ---------- Cargar más ---------- */
+.load-more { display: flex; justify-content: center; margin-top: var(--space-6); }
+.load-more:has(> [hidden]:only-child) { display: none; } /* sin botón no se reserva espacio */
+.load-more .btn { width: min(100%, 20rem); }
+
+/* ---------- Skeletons dentro de la grilla de listados ---------- */
+.grid--cards .skeleton { min-height: 20rem; }
+
+/* ---------- Categorías ---------- */
+.category-card { position: relative; gap: var(--space-2); }
+.category-card :is(h2, h3) { margin: 0; font-size: var(--text-xl); }
+.category-card :is(h2, h3) a { color: var(--color-cafe); text-decoration-thickness: 2px; } /* 17.01:1 sobre blanco */
+.category-card :is(h2, h3) a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; } /* toda la tarjeta es el enlace: objetivo grande, sin depender de hover */
+.category-card :is(h2, h3) a:focus-visible { outline: none; }
+.category-card :is(h2, h3) a:focus-visible::after { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+.category-card p { margin: 0; }
+.category-card .category-card__count { margin-top: auto; padding-top: var(--space-2); font-size: var(--text-sm); font-weight: 800; color: var(--color-cafe); }
+/* Categoría vacía: atenuada con COLOR (gris sobre crema 6.08:1, borde punteado), no con opacity, que bajaría el contraste bajo AA */
+.category-card.is-empty { background: var(--color-crema); border: 2px dashed var(--color-gris); box-shadow: none; color: var(--color-gris); }
+.category-card.is-empty :is(h2, h3) a,
+.category-card.is-empty .category-card__count { color: var(--color-gris); }
+@media (prefers-reduced-motion: no-preference) {
+  .category-card { transition: box-shadow var(--transition), transform var(--transition); }
+  .category-card:not(.is-empty):hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+}
+
+/* ---------- Texto corrido (contacto y páginas de texto) ---------- */
+.prose { max-width: 65ch; line-height: 1.7; color: var(--color-tinta); }
+.prose > * { margin-block: 0; }
+.prose > * + * { margin-top: var(--space-4); }
+.prose :is(h2, h3, h4) { margin-bottom: 0; }
+.prose > :is(h2, h3, h4) { margin-top: var(--space-6); }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: var(--text-xl); }
+.prose h3 { font-size: var(--text-lg); }
+.prose ul, .prose ol { padding-left: 1.5em; }
+.prose li + li { margin-top: var(--space-2); }
+.prose li::marker { color: var(--color-cafe); font-weight: 700; }
+.prose a { font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.2em; } /* azul sobre crema 8.09:1 y subrayado: no solo color */
+.prose strong { color: var(--color-cafe); }
+
+/* ---------- Panel de contacto: caja crema con las redes (la etiqueta va en tinta: el crema del social-link base no se leería) ---------- */
+.contact-panel {
+  padding: var(--space-5) var(--space-4);
+  background: var(--color-crema);
+  color: var(--color-tinta); /* 16.89:1 */
+  border: var(--border-width) solid var(--color-cafe); /* 15.71:1 */
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.contact-panel :where(h2, h3) { margin-bottom: var(--space-4); font-size: var(--text-xl); color: var(--color-cafe); }
+.contact-panel > :last-child { margin-bottom: 0; }
+.contact-panel .social-list { justify-content: flex-start; gap: var(--space-3) var(--space-5); }
+.contact-panel .social-link { color: var(--color-tinta); } /* 16.89:1 */
+.contact-panel .social-link__icon { box-shadow: 0 0 0 2px var(--color-cafe); } /* aro visible sobre crema (el aro crema de la versión sobre marrón desaparecería) */
+.contact-panel .social-link:hover .social-link__label { text-decoration: underline; text-decoration-thickness: 2px; }
+
+/* ---------- 404 ---------- */
+.notfound {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  max-width: 40rem;
+  margin-inline: auto;
+  padding-block: var(--space-5);
+  text-align: center;
+}
+.notfound > * { margin-block: 0; }
+.notfound img { width: min(100%, 12rem); height: auto; aspect-ratio: 1; object-fit: contain; } /* ilustración decorativa (alt="") */
+.notfound :is(h1, h2) { font-size: var(--text-2xl); }
+.notfound :is(.notfound__actions, .actions) { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); }
+
+/* Aviso que el JS agrega a una categoría sin productos; gris sobre crema 6.08:1. */
+.category-empty {
+  margin: 0;
+  color: var(--color-gris);
+  font-size: var(--text-sm);
+}
+
+/* El JS manda el foco al primer ítem que agrega "Cargar más" (tabindex -1): se ve con el mismo anillo del resto. */
+.grid--cards > li[tabindex="-1"]:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 4px;
 }

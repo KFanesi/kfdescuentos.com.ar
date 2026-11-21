@@ -7,7 +7,9 @@
 }
 @media (min-width: 64em) { .container { --container-pad: var(--space-6); } }
 
-.section { padding-block: var(--space-7); }
+/* Aire vertical entre secciones: ~40 % menos que la primera versión en móvil (3rem -> 1.75rem), ~33 % en tablet (3rem -> 2rem)
+   y ~35-38 % en escritorio (clamp 3-5rem -> 2-3.25rem). Se concentra en una variable para ajustarlo en un solo lugar. */
+.section { padding-block: var(--section-y); }
 .section--crema { background: var(--color-crema); color: var(--color-tinta); }
 .section--cafe { background: var(--color-cafe); color: var(--color-crema); }
 .section--cafe .btn--ghost { color: var(--color-crema); border-color: var(--color-crema); }
@@ -33,7 +35,6 @@
   .section__header { flex-wrap: nowrap; justify-content: space-between; }
   .section__header .btn { flex: 0 0 auto; }
 }
-@media (min-width: 64em) { .section { padding-block: var(--space-8); } }
 
 .stack > * + * { margin-top: var(--space-4); }
 .text-measure { max-width: var(--text-max); }
@@ -85,3 +86,21 @@
 .wave--amarillo::before { content: none; }
 .wave--amarillo::after { top: 35%; }
 .wave--flip { margin-top: 0; margin-bottom: calc(var(--wave-h) * -1); transform: scaleY(-1); }
+
+/* Listados de las páginas internas (cupones, productos, categorías): ul.grid.grid--cards. Distinta de .grid--2 de la home: aquí
+   caben tantas columnas como entren con tarjetas de al menos 17rem (min(100%, …) evita desborde a 320 px). */
+.grid--cards {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 48em) { .grid--cards { gap: var(--space-5); } }
+.grid--cards > li { min-width: 0; }
+/* li "envoltorio" (sin clase de tarjeta): la tarjeta de dentro se estira a la altura de la fila */
+.grid--cards > li:not(.card, .coupon-card, .product-card) { display: flex; flex-direction: column; }
+.grid--cards > li:not(.card, .coupon-card, .product-card) > :is(.coupon-card, .product-card) { flex: 1 1 auto; }
+/* Tarjetas de producto y cupón: ocupan toda la celda (el ancho fijo --card-w es solo del carrusel) */
+.grid--cards > :is(.coupon-card, .product-card),
+.grid--cards > li > :is(.coupon-card, .product-card) { width: 100%; max-width: none; }

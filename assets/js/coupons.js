@@ -1,7 +1,8 @@
-import { buildActions, el } from './dom.js?v=689f9192';
-import { mountList } from './list.js?v=689f9192';
-import { validateCoupon } from './schema.js?v=689f9192';
-import { formatDate } from './utils.js?v=689f9192';
+import { buildActions, el } from './dom.js?v=eae5bc3b';
+import { mountList } from './list.js?v=eae5bc3b';
+import { validateCoupon } from './schema.js?v=eae5bc3b';
+import { COUPON_FIELDS } from './search.js?v=eae5bc3b';
+import { formatDate } from './utils.js?v=eae5bc3b';
 
 /**
  * Tarjeta de un cupón (el CSS usa estas clases). Con código: muestra el código y "Copiar código".
@@ -33,6 +34,10 @@ export function buildCouponCard(document, coupon) {
   return card;
 }
 
-/** Llena `ul[data-coupons]` (atributo opcional `data-limit`) con los cupones vigentes. No rechaza nunca. */
+/** Llena `ul[data-coupons]` con los cupones vigentes: `data-limit` (home) o `data-paginated` (listado con filtros). No rechaza nunca. */
 export const initCoupons = (container, options) =>
-  mountList(container, { collection: 'coupons', validator: validateCoupon, buildCard: buildCouponCard, section: 'cupones', titleOf: (coupon) => coupon.title }, options);
+  mountList(
+    container,
+    { collection: 'coupons', validator: validateCoupon, buildCard: buildCouponCard, section: 'cupones', titleOf: (coupon) => coupon.title, searchFields: () => COUPON_FIELDS },
+    options,
+  );

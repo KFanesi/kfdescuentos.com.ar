@@ -1,5 +1,5 @@
-import { isExpired, siteUrl, todayLocal } from './utils.js?v=689f9192';
-import { validateAll, validateCategory } from './schema.js?v=689f9192';
+import { isExpired, siteUrl, todayLocal } from './utils.js?v=eae5bc3b';
+import { validateAll, validateCategory } from './schema.js?v=eae5bc3b';
 
 // Carga de los JSON de datos. Ninguna función lanza: un JSON caído, inexistente o inválido es un estado más de la página
 // ({ ok: false }) y no un error sin capturar, así el resto del sitio sigue funcionando.
@@ -46,5 +46,7 @@ export async function loadCollection(name, validator, { document, fetchFn, now =
   const loaded = await loadJson(name, options);
   if (!loaded.ok) return loaded;
   const valid = validateAll(loaded.items, validator, { categories, label: name });
-  return { ok: true, items: filterVisible(valid, todayLocal(now)), error: null };
+  const result = { ok: true, items: filterVisible(valid, todayLocal(now)), error: null };
+  // Los listados de productos necesitan las categorías (filtro y nombre visible) sin pedir el JSON dos veces.
+  return withCategories ? { ...result, categories } : result;
 }

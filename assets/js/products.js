@@ -1,8 +1,9 @@
-import { config } from './config.js?v=689f9192';
-import { buildActions, el } from './dom.js?v=689f9192';
-import { mountList } from './list.js?v=689f9192';
-import { validateProduct } from './schema.js?v=689f9192';
-import { discountPercent, formatDate, formatPrice, siteUrl } from './utils.js?v=689f9192';
+import { config } from './config.js?v=eae5bc3b';
+import { buildActions, el } from './dom.js?v=eae5bc3b';
+import { mountList } from './list.js?v=eae5bc3b';
+import { validateProduct } from './schema.js?v=eae5bc3b';
+import { productFields } from './search.js?v=eae5bc3b';
+import { discountPercent, formatDate, formatPrice, siteUrl } from './utils.js?v=eae5bc3b';
 
 // El JSON no trae las medidas de la foto: estos atributos solo reservan un recuadro cuadrado (el CSS lo recorta con
 // object-fit) para que la página no se mueva al cargar la imagen.
@@ -42,7 +43,7 @@ export function buildProductCard(document, product, settings = config) {
   return card;
 }
 
-/** Llena `ul[data-products]` (atributos opcionales `data-limit` y `data-featured`) con los productos vigentes. No rechaza nunca. */
+/** Llena `ul[data-products]` (opcionales `data-limit`, `data-featured` y `data-paginated` para el listado con filtros) con los productos vigentes. No rechaza nunca. */
 export function initProducts(container, options) {
   const onlyFeatured = container.hasAttribute('data-featured');
   return mountList(
@@ -55,6 +56,8 @@ export function initProducts(container, options) {
       buildCard: (document, product) => buildProductCard(document, product),
       section: 'productos',
       titleOf: (product) => product.name,
+      searchFields: productFields,
+      crossLinkCoupons: true,
     },
     options,
   );

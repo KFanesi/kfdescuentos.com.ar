@@ -3,25 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cupones | KFDescuentos</title>
-<meta name="description" content="Cupones de descuento de Mercado Libre reunidos en KFDescuentos, un sitio independiente. Esta sección está en construcción.">
-<meta name="robots" content="noindex">
+<title>Cupones de descuento de Mercado Libre | KFDescuentos</title>
+<meta name="description" content="Cupones de descuento de Mercado Libre reunidos en un solo lugar, con búsqueda. KFDescuentos es un sitio independiente y no es un sitio oficial de Mercado Libre.">
 <link rel="canonical" href="https://kfanesi.github.io/kfdescuentos.com.ar/cupones/">
+<meta name="data-version" content="7e3306f0">
 <link rel="icon" href="/kfdescuentos.com.ar/favicon.svg?v=99f95a8c" type="image/svg+xml">
 <link rel="icon" href="/kfdescuentos.com.ar/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/kfdescuentos.com.ar/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KFDescuentos">
-<meta property="og:title" content="Cupones | KFDescuentos">
-<meta property="og:description" content="Cupones de descuento de Mercado Libre reunidos en KFDescuentos, un sitio independiente. Esta sección está en construcción.">
+<meta property="og:title" content="Cupones de descuento de Mercado Libre | KFDescuentos">
+<meta property="og:description" content="Cupones de descuento de Mercado Libre reunidos en un solo lugar, con búsqueda. KFDescuentos es un sitio independiente y no es un sitio oficial de Mercado Libre.">
 <meta property="og:url" content="https://kfanesi.github.io/kfdescuentos.com.ar/cupones/">
 <meta property="og:locale" content="es_AR">
 <meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/variables.css?v=8b44aa13">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/base.css?v=cd951855">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/layout.css?v=366fd8db">
-<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/components.css?v=054bdba5">
-<script type="module" src="/kfdescuentos.com.ar/assets/js/app.js?v=689f9192"></script>
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/variables.css?v=bf3aa8a7">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/base.css?v=1cd939da">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/layout.css?v=6cfc7581">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/components.css?v=691bd4ec">
+<script type="module" src="/kfdescuentos.com.ar/assets/js/app.js?v=eae5bc3b"></script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -46,11 +46,40 @@
   </div>
 </header>
 <main id="contenido" tabindex="-1">
-  <div class="container">
-    <h1>Cupones</h1>
-    <p>Esta sección está en construcción.</p>
-    <noscript><p>Para ver las ofertas y cupones de esta página necesitás activar JavaScript en tu navegador.</p></noscript>
+  <p class="live-region" id="aviso" role="status" aria-live="polite"></p>
+  <div class="page-header page-header--wave">
+    <div class="container">
+      <h1>Cupones de descuento</h1>
+      <p class="page-header__lead">Cupones de Mercado Libre con su código para copiar o con el enlace donde se aplican.</p>
+    </div>
   </div>
+  <div class="wave" aria-hidden="true"></div>
+
+  <section class="section" aria-labelledby="t-listado">
+    <div class="container">
+      <h2 class="visually-hidden" id="t-listado">Listado de cupones</h2>
+      <p class="affiliate-notice">KFDescuentos es un sitio independiente y no es un sitio oficial de Mercado Libre. Si comprás desde un enlace de esta página, podemos recibir una comisión. Los cupones pertenecen a Mercado Libre y pueden cambiar o vencer.</p>
+      <noscript><p>Para ver los cupones necesitás activar JavaScript en tu navegador.</p></noscript>
+      <form class="filters" data-filters method="get" action="/kfdescuentos.com.ar/cupones/" role="search" aria-label="Buscar cupones">
+        <div class="filters__field">
+          <label for="f-q">Buscar</label>
+          <input id="f-q" name="q" type="search" autocomplete="off">
+        </div>
+        <div class="filters__actions">
+          <button class="btn btn--primary" type="submit">Buscar</button>
+          <a class="btn btn--ghost" data-clear href="/kfdescuentos.com.ar/cupones/">Limpiar</a>
+        </div>
+      </form>
+      <p class="results-count" data-results></p>
+      <ul class="grid grid--cards" data-coupons data-paginated data-page-size="24" aria-busy="true"></ul>
+      <p class="empty-state" data-empty hidden>Todavía no hay cupones publicados. Seguinos en nuestras redes para enterarte cuando aparezcan.</p>
+      <p class="empty-state noresults" data-noresults hidden>No encontramos cupones con esa búsqueda. Probá con otras palabras.</p>
+      <p class="error-state" data-error hidden>No pudimos cargar los cupones. Probá de nuevo en un rato.</p>
+      <div class="load-more">
+        <button class="btn btn--ghost" type="button" data-load-more hidden>Cargar más</button>
+      </div>
+    </div>
+  </section>
 </main>
 <footer class="site-footer">
   <div class="container site-footer__grid">
