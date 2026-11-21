@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kfanesi.github.io/kfdescuentos.com.ar/sitemap.xml
