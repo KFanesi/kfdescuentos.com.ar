@@ -1,1 +1,54 @@
-[]
+[
+  {
+    "id": "cupon-corazon",
+    "brand": "Mercado Libre",
+    "title": "Cupón CORAZON",
+    "code": "CORAZON",
+    "description": "Lista de productos de Mercado Libre para usar con el cupón CORAZON.",
+    "conditions": "Revisá las condiciones y el vencimiento en Mercado Libre antes de usarlo.",
+    "exclusive": false,
+    "publishedAt": "2026-11-21",
+    "expiresAt": null,
+    "url": "https://meli.la/1hVcei8",
+    "active": true
+  },
+  {
+    "id": "cupon-ramenpara2",
+    "brand": "Mercado Libre",
+    "title": "Cupón RAMENPARA2",
+    "code": "RAMENPARA2",
+    "description": "Lista de productos de Mercado Libre para usar con el cupón RAMENPARA2.",
+    "conditions": "Revisá las condiciones y el vencimiento en Mercado Libre antes de usarlo.",
+    "exclusive": false,
+    "publishedAt": "2026-11-21",
+    "expiresAt": null,
+    "url": "https://meli.la/1hVcei8",
+    "active": true
+  },
+  {
+    "id": "cupon-player1",
+    "brand": "Mercado Libre",
+    "title": "Cupón PLAYER1",
+    "code": "PLAYER1",
+    "description": "Lista de productos de Mercado Libre para usar con el cupón PLAYER1.",
+    "conditions": "Revisá las condiciones y el vencimiento en Mercado Libre antes de usarlo.",
+    "exclusive": false,
+    "publishedAt": "2026-11-21",
+    "expiresAt": null,
+    "url": "https://meli.la/1hVcei8",
+    "active": true
+  },
+  {
+    "id": "cupon-hacecalor",
+    "brand": "Mercado Libre",
+    "title": "Cupón HACECALOR",
+    "code": "HACECALOR",
+    "description": "Lista de productos de Mercado Libre para usar con el cupón HACECALOR.",
+    "conditions": "Revisá las condiciones y el vencimiento en Mercado Libre antes de usarlo.",
+    "exclusive": false,
+    "publishedAt": "2026-11-21",
+    "expiresAt": null,
+    "url": "https://meli.la/1hVcei8",
+    "active": true
+  }
+]

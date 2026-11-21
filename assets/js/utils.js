@@ -1,33 +1,6 @@
-// Funciones puras (sin DOM) para precios, descuentos, vencimientos, URLs, búsqueda y parámetros de la página.
+// Funciones puras (sin DOM) para fechas, vencimientos, URLs, búsqueda y parámetros de la página.
 
-const ORDERS = ['descuento', 'precio-asc', 'precio-desc', 'recientes'];
-const PARAM_KEYS = ['q', 'categoria', 'orden', 'id'];
-
-const isMoney = (value) => typeof value === 'number' && Number.isFinite(value);
-
-/**
- * Precio con Intl.NumberFormat. Sin decimales si el monto es entero, con dos si los tiene.
- * `locale` y `currency` son obligatorios (vienen de config.js): Intl lanza RangeError ante valores inválidos.
- * Un monto que no sea número finito devuelve '' para que la tarjeta no muestre "NaN".
- */
-export function formatPrice(amount, { locale, currency }) {
-  if (!isMoney(amount)) return '';
-  const digits = Number.isInteger(amount) ? 0 : 2;
-  return new Intl.NumberFormat(locale, { style: 'currency', currency, minimumFractionDigits: digits, maximumFractionDigits: digits }).format(amount);
-}
-
-/**
- * Porcentaje de descuento entero, redondeado hacia abajo (nunca se promete más descuento del real).
- * Devuelve null si no hay descuento real: precios no numéricos, <= 0, original <= precio, o menos de 1 %.
- * Se calcula en centavos enteros: `(1 - 90 / 100) * 100` da 9,999… en flotantes y floor lo bajaría a 9.
- */
-export function discountPercent(price, originalPrice) {
-  if (!isMoney(price) || !isMoney(originalPrice) || price <= 0 || originalPrice <= price) return null;
-  const priceCents = Math.round(price * 100);
-  const originalCents = Math.round(originalPrice * 100);
-  const percent = Math.floor(((originalCents - priceCents) * 100) / originalCents);
-  return percent >= 1 ? percent : null;
-}
+const PARAM_KEYS = ['q', 'id'];
 
 const pad = (number) => String(number).padStart(2, '0');
 
@@ -89,19 +62,14 @@ export function positiveInt(value) {
   return number > 0 ? number : null;
 }
 
-const cleanValue = (key, value) => {
-  if (typeof value !== 'string') return null;
-  const trimmed = value.trim();
-  if (trimmed === '' || (key === 'orden' && !ORDERS.includes(trimmed))) return null;
-  return trimmed;
-};
+const cleanValue = (value) => (typeof value === 'string' && value.trim() !== '' ? value.trim() : null);
 
-/** Lee ?q=&categoria=&orden=&id= (solo esas claves; vacíos y `orden` inválido se omiten; gana el primer valor repetido). */
+/** Lee ?q=&id= (solo esas claves; los vacíos se omiten; gana el primer valor repetido). */
 export function readParams(search) {
   const source = new URLSearchParams(typeof search === 'string' ? search : '');
   const result = {};
   for (const key of PARAM_KEYS) {
-    const value = cleanValue(key, source.get(key));
+    const value = cleanValue(source.get(key));
     if (value !== null) result[key] = value;
   }
   return result;
@@ -111,7 +79,7 @@ export function readParams(search) {
 export function writeParams(params) {
   const target = new URLSearchParams();
   for (const key of PARAM_KEYS) {
-    const value = cleanValue(key, params?.[key]);
+    const value = cleanValue(params?.[key]);
     if (value !== null) target.set(key, value);
   }
   const query = target.toString();

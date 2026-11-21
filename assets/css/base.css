@@ -56,7 +56,6 @@ button { cursor: pointer; }
 }
 .site-header :focus-visible,
 .site-footer :focus-visible,
-.on-dark :focus-visible,
 .section--cafe :focus-visible,
 .hero :focus-visible,
 .page-header :focus-visible,

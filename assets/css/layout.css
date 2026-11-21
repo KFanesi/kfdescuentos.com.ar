@@ -10,7 +10,6 @@
 /* Aire vertical entre secciones: ~40 % menos que la primera versión en móvil (3rem -> 1.75rem), ~33 % en tablet (3rem -> 2rem)
    y ~35-38 % en escritorio (clamp 3-5rem -> 2-3.25rem). Se concentra en una variable para ajustarlo en un solo lugar. */
 .section { padding-block: var(--section-y); }
-.section--crema { background: var(--color-crema); color: var(--color-tinta); }
 .section--cafe { background: var(--color-cafe); color: var(--color-crema); }
 .section--cafe .btn--ghost { color: var(--color-crema); border-color: var(--color-crema); }
 .section--cafe .btn--ghost:hover { background: var(--color-crema); color: var(--color-cafe); }
@@ -38,7 +37,6 @@
 
 .stack > * + * { margin-top: var(--space-4); }
 .text-measure { max-width: var(--text-max); }
-.text-center { text-align: center; }
 
 /* Grillas flexibles: tantas columnas como quepan (sin media queries ni desborde a 320 px) */
 .grid {
@@ -46,7 +44,6 @@
   gap: var(--space-4);
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
 }
-.grid--wide { grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
 .grid--2 { grid-template-columns: minmax(0, 1fr); } /* minmax(0,…): un código largo no ensancha la columna ni desborda a 320 px */
 @media (min-width: 48em) { .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
@@ -55,8 +52,7 @@
    a la izquierda; ::after = relleno amarillo con cresta propia, que además tapa la parte baja de la azul y deja el borde inferior
    siempre amarillo. Se usa con <div class="wave" aria-hidden="true"></div>.
    Superposición: la parte superior de la caja es transparente y el margin-top negativo la monta sobre el final del bloque
-   anterior, así se ve su color (marrón del hero, crema, etc.) detrás de la cresta. --flip la invierte (para el borde superior
-   de un bloque: monta sobre el inicio del bloque siguiente). */
+   anterior, así se ve su color (marrón del hero, crema, etc.) detrás de la cresta. */
 .wave {
   position: relative;
   z-index: 1;
@@ -83,11 +79,8 @@
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
   background: var(--wave-amarillo);
 }
-.wave--amarillo::before { content: none; }
-.wave--amarillo::after { top: 35%; }
-.wave--flip { margin-top: 0; margin-bottom: calc(var(--wave-h) * -1); transform: scaleY(-1); }
 
-/* Listados de las páginas internas (cupones, productos, categorías): ul.grid.grid--cards. Distinta de .grid--2 de la home: aquí
+/* Listados de las páginas internas (cupones): ul.grid.grid--cards. Distinta de .grid--2 de la home: aquí
    caben tantas columnas como entren con tarjetas de al menos 17rem (min(100%, …) evita desborde a 320 px). */
 .grid--cards {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
@@ -98,9 +91,5 @@
 }
 @media (min-width: 48em) { .grid--cards { gap: var(--space-5); } }
 .grid--cards > li { min-width: 0; }
-/* li "envoltorio" (sin clase de tarjeta): la tarjeta de dentro se estira a la altura de la fila */
-.grid--cards > li:not(.card, .coupon-card, .product-card) { display: flex; flex-direction: column; }
-.grid--cards > li:not(.card, .coupon-card, .product-card) > :is(.coupon-card, .product-card) { flex: 1 1 auto; }
-/* Tarjetas de producto y cupón: ocupan toda la celda (el ancho fijo --card-w es solo del carrusel) */
-.grid--cards > :is(.coupon-card, .product-card),
-.grid--cards > li > :is(.coupon-card, .product-card) { width: 100%; max-width: none; }
+/* Las tarjetas de cupón ocupan toda la celda de la grilla */
+.grid--cards > .coupon-card { width: 100%; max-width: none; }

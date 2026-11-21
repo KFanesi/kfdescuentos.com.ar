@@ -5,44 +5,49 @@
    - crema  sobre cafe     = 15.71:1  texto del header y del footer
    - blanco sobre cafe     = 17.01:1  texto del header y del footer (alternativo)
    - amarillo sobre cafe   = 11.65:1  títulos del footer, enlace activo, foco sobre fondo marrón (3:1 exigido)
-   - tinta  sobre amarillo = 12.51:1  botón primario, insignias, enlace actual (SIEMPRE texto oscuro)
+   - tinta  sobre amarillo = 12.51:1  botón primario, insignia «Exclusivo», enlace actual (SIEMPRE texto oscuro)
    - cafe   sobre amarillo = 11.65:1  alternativa para texto sobre amarillo
    - tinta  sobre crema    = 16.89:1  texto del cuerpo y de las tarjetas
-   - tinta  sobre blanco   = 18.28:1  campo de búsqueda y tarjetas blancas
+   - tinta  sobre blanco   = 18.28:1  campo de búsqueda de /cupones/ y cajas blancas
    - cafe   sobre crema    = 15.71:1  títulos y bordes; foco sobre fondo claro (3:1 exigido)
    - cafe   sobre blanco   = 17.01:1  bordes del campo de búsqueda
    - azul   sobre crema    =  8.09:1  enlaces del cuerpo
-   - azul   sobre blanco   =  8.75:1  enlaces dentro de tarjetas blancas
-   - blanco sobre azul     =  8.75:1  botón secundario azul / insignia azul
+   - azul   sobre blanco   =  8.75:1  enlaces dentro de cajas blancas
    - amarillo sobre azul   =  5.99:1  ola amarilla junto a la azul (decorativo, no texto)
    - verde  sobre crema    =  5.95:1  detalles naturales; también cumple como texto
    - verde  sobre blanco   =  6.45:1
    Componentes de la home. Fondos adicionales: --hero-a #4a2005, --hero-b #6e3a0c (degradé del hero y de la banda de
-   cabecera de página, marrón cálido), --color-gris #6b5a4c (texto secundario y precio tachado). Ratios calculados con la fórmula WCAG:
+   cabecera de página, marrón cálido), --color-gris #6b5a4c (texto secundario). Ratios calculados con la fórmula WCAG:
    - crema  sobre hero-a   = 12.93:1  texto del hero y de la cabecera de página (extremo oscuro del degradé)
    - crema  sobre hero-b   =  8.53:1  texto del hero en el extremo claro del degradé (el peor caso sigue sobre 4.5)
    - blanco sobre hero-b   =  9.24:1
    - amarillo sobre hero-a =  9.58:1  títulos y énfasis dentro del hero y de la cabecera de página
    - amarillo sobre hero-b =  6.32:1
    - crema  sobre hero-b + brillo dorado (amarillo al 25 %, #754d06) = 6.88:1  peor caso con los destellos decorativos
-   - gris   sobre blanco   =  6.58:1  precio tachado y "verificado el..." en tarjetas de producto
+   - gris   sobre blanco   =  6.58:1  marcador del campo de búsqueda
    - gris   sobre crema    =  6.08:1  condiciones y vencimiento en cupones
    - blanco sobre verde    =  6.45:1  botón de copiar en estado .is-copied (además cambia el texto, no solo el color)
-   - crema  sobre cafe     = 15.71:1  flecha de los botones del carrusel (círculo marrón)
-   - tinta  sobre amarillo = 12.51:1  etiqueta inclinada del hero (.hero__tag) e insignia de descuento
+   - tinta  sobre amarillo = 12.51:1  etiqueta inclinada del hero (.hero__tag)
    - azul   sobre crema    =  8.09:1  "Se aplica desde el enlace" en el cupón
    Páginas internas (sin colores nuevos: solo pares de la paleta ya validada). Ratios con la fórmula WCAG:
    - crema    sobre hero-a/hero-b = 12.93:1 / 8.53:1  .page-header: texto de la cabecera y .page-header__lead (degradé del hero)
    - amarillo sobre hero-a/hero-b =  9.58:1 / 6.32:1  énfasis (em/mark) dentro del h1 de la cabecera
-   - cafe     sobre blanco        = 17.01:1  etiquetas (label), borde de input/select y flecha del select (3:1 exigido); texto del enlace de .category-card
-   - tinta    sobre blanco        = 18.28:1  texto escrito en input/select y descripción de la categoría
-   - gris     sobre blanco        =  6.58:1  placeholder y .results-count dentro de .filters
-   - gris     sobre crema         =  6.08:1  .results-count y categoría vacía (li.is-empty: texto atenuado con color, no con opacity)
-   - tinta    sobre crema         = 16.89:1  texto de .results-note y .contact-panel; etiqueta de las redes sobre el panel crema
-   - cafe     sobre crema         = 15.71:1  borde de .results-note y .contact-panel, aro de los íconos de redes, foco
-   - azul     sobre crema         =  8.09:1  enlace dentro de .results-note
+   - cafe     sobre blanco        = 17.01:1  etiquetas (label) y borde del campo de búsqueda (3:1 exigido)
+   - tinta    sobre blanco        = 18.28:1  texto escrito en el campo de búsqueda
+   - gris     sobre blanco        =  6.58:1  placeholder del campo de búsqueda
+   - gris     sobre crema         =  6.08:1  .results-count
+   - tinta    sobre crema         = 16.89:1  texto de .contact-panel; etiqueta de las redes sobre el panel crema
+   - cafe     sobre crema         = 15.71:1  borde de .contact-panel, aro de los íconos de redes, foco
    - azul     sobre blanco        =  8.75:1  enlaces del texto corrido .prose sobre fondo blanco
-   - gris     sobre crema (borde) =  6.08:1  borde punteado de li.is-empty (3:1 exigido)
+   Página /admin/ (sin colores nuevos; pares ya validados). Ratios con la fórmula WCAG:
+   - tinta    sobre amarillo      = 12.51:1  número de cada paso (.admin-steps) · borde cafe del círculo sobre amarillo = 11.65:1
+   - tinta    sobre blanco        = 18.28:1  texto de los pasos, de los campos y de las filas de .admin-list
+   - cafe     sobre blanco        = 17.01:1  etiquetas, negritas de los pasos, borde de campos y botón "Quitar" (3:1 exigido)
+   - gris     sobre blanco        =  6.58:1  ayudas (.admin-hint) dentro del formulario
+   - gris     sobre crema         =  6.08:1  ayudas dentro de .admin-result y estado vacío de la lista (texto y borde punteado)
+   - tinta    sobre crema         = 16.89:1  .admin-note, .admin-result y la caja de errores
+   - cafe     sobre crema         = 15.71:1  bordes de esas cajas, rótulo "Revisá esto antes de seguir" y foco
+   - crema    sobre cafe          = 15.71:1  botón "Quitar" al pasar el mouse
    NO se usa: amarillo sobre crema (no alcanza 3:1), blanco sobre amarillo, tinta sobre cafe (1.07:1). */
 :root {
   /* Paleta */
@@ -113,7 +118,7 @@
   --target-min: 1.5rem;
 
   /* Alturas y desplazamiento: el header es sticky; scroll-padding evita que tape el foco (WCAG 2.4.11) */
-  --header-h: 7.25rem; /* alto real del header en móvil (marca + menú + buscador en 2 filas, ~115 px); desde 48em baja a 4.5rem. Si scroll-padding fuera menor, al enfocar algo el navegador lo deja bajo el header */
+  --header-h: 4rem; /* alto real del header en móvil (marca + botón de menú en una fila, ~60 px); desde 48em sube a 4.5rem. Si scroll-padding fuera menor, al enfocar algo el navegador lo deja bajo el header */
   --main-max: 120rem;
   --scroll-offset: calc(var(--header-h) + var(--space-5));
 
@@ -127,8 +132,7 @@
   /* Movimiento */
   --transition: 150ms ease;
 
-  /* Componentes: ancho de tarjeta del carrusel y muesca de los cupones */
-  --card-w: clamp(12.5rem, 72vw, 16rem);
+  /* Componentes: muesca de los cupones */
   --notch: 0.7rem;
 
   /* Aire vertical de las secciones (.section): compacto en móvil, algo más en tablet y escritorio */

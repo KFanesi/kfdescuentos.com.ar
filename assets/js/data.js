@@ -1,5 +1,5 @@
-import { isExpired, siteUrl, todayLocal } from './utils.js?v=00781e01';
-import { validateAll, validateCategory } from './schema.js?v=00781e01';
+import { isExpired, siteUrl, todayLocal } from './utils.js?v=7a113a9a';
+import { validateAll } from './schema.js?v=7a113a9a';
 
 // Carga de los JSON de datos. Ninguna función lanza: un JSON caído, inexistente o inválido es un estado más de la página
 // ({ ok: false }) y no un error sin capturar, así el resto del sitio sigue funcionando.
@@ -10,14 +10,16 @@ const dataVersion = (document) => document.querySelector('meta[name="data-versio
 /**
  * Pide `<base>assets/data/<name>.json`. La base sale de la ubicación del módulo (siteUrl), no de una ruta escrita:
  * el sitio puede vivir bajo un prefijo de ruta. Con versión, agrega `?v=` para saltear la caché de Cloudflare.
+ * Con `fresh: true` no se usa la versión ni la caché (`cache: 'no-store'`): es para quien edita los datos (/admin/),
+ * que nunca debe partir de una copia vieja. Sin `fresh` el comportamiento es el de siempre.
  * Devuelve `{ ok, items, error }`.
  */
-export async function loadJson(name, { document, fetchFn = globalThis.fetch } = {}) {
+export async function loadJson(name, { document, fetchFn = globalThis.fetch, fresh = false } = {}) {
   try {
     const url = new URL(siteUrl(`assets/data/${name}.json`));
-    const version = dataVersion(document);
+    const version = fresh ? '' : dataVersion(document);
     if (version) url.searchParams.set('v', version);
-    const response = await fetchFn(url.href);
+    const response = await (fresh ? fetchFn(url.href, { cache: 'no-store' }) : fetchFn(url.href));
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const items = await response.json();
     if (!Array.isArray(items)) throw new Error('el JSON debe ser una lista');
@@ -31,22 +33,10 @@ export async function loadJson(name, { document, fetchFn = globalThis.fetch } = 
 /** Solo lo publicable: activo y sin vencer. `today` es AAAA-MM-DD local; `expiresAt` es inclusivo (ver isExpired). */
 export const filterVisible = (items, today) => items.filter((item) => item.active && !isExpired(item.expiresAt, today));
 
-/**
- * Carga, valida y filtra una colección. Con `withCategories` también pide categories.json, que hace falta para validar
- * la categoría de cada producto: sin ella no se puede garantizar nada y se informa como fallo de carga.
- */
-export async function loadCollection(name, validator, { document, fetchFn, now = new Date(), withCategories = false } = {}) {
-  const options = { document, fetchFn };
-  let categories = [];
-  if (withCategories) {
-    const loaded = await loadJson('categories', options);
-    if (!loaded.ok) return loaded;
-    categories = validateAll(loaded.items, validateCategory, { label: 'categories' });
-  }
-  const loaded = await loadJson(name, options);
+/** Carga, valida y filtra una colección: solo queda lo publicable (válido, activo y sin vencer). */
+export async function loadCollection(name, validator, { document, fetchFn, now = new Date() } = {}) {
+  const loaded = await loadJson(name, { document, fetchFn });
   if (!loaded.ok) return loaded;
-  const valid = validateAll(loaded.items, validator, { categories, label: name });
-  const result = { ok: true, items: filterVisible(valid, todayLocal(now)), error: null };
-  // Los listados de productos necesitan las categorías (filtro y nombre visible) sin pedir el JSON dos veces.
-  return withCategories ? { ...result, categories } : result;
+  const valid = validateAll(loaded.items, validator, { label: name });
+  return { ok: true, items: filterVisible(valid, todayLocal(now)), error: null };
 }

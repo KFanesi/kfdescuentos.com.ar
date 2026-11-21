@@ -1,10 +1,8 @@
-import { activeSocials, config } from './config.js?v=00781e01';
-import { initCarousel } from './carousel.js?v=00781e01';
-import { initCategories } from './categories.js?v=00781e01';
-import { initCoupons } from './coupons.js?v=00781e01';
-import { el } from './dom.js?v=00781e01';
-import { initProducts } from './products.js?v=00781e01';
-import { siteUrl } from './utils.js?v=00781e01';
+import { initAdmin } from './admin.js?v=7a113a9a';
+import { activeSocials, config } from './config.js?v=7a113a9a';
+import { initCoupons } from './coupons.js?v=7a113a9a';
+import { el } from './dom.js?v=7a113a9a';
+import { siteUrl } from './utils.js?v=7a113a9a';
 
 /** Menú móvil: el botón nace visible y la nav colapsada (así el header no cambia de alto al cargar el JS); abre y cierra la nav. Sin JS, `sin-js.css` (dentro de <noscript>) deja la nav siempre visible. */
 export function initMenu(document) {
@@ -78,7 +76,7 @@ export async function safeInit(name, init) {
   }
 }
 
-/** Arranca todo lo que la página tenga: menú, redes, año y, si existen sus contenedores, cupones, productos, categorías y carruseles. */
+/** Arranca todo lo que la página tenga: menú, redes, año y, si existen sus contenedores, cupones y la página de administración (`[data-admin]`). */
 export async function initPage(document, { fetchFn, now = new Date() } = {}) {
   const options = { fetchFn, now };
   const jobs = [
@@ -86,9 +84,7 @@ export async function initPage(document, { fetchFn, now = new Date() } = {}) {
     safeInit('redes', () => initSocial(document, activeSocials(config))),
     safeInit('año', () => initYear(document, now)),
     ...[...document.querySelectorAll('[data-coupons]')].map((container) => safeInit('cupones', () => initCoupons(container, options))),
-    ...[...document.querySelectorAll('[data-products]')].map((container) => safeInit('productos', () => initProducts(container, options))),
-    ...[...document.querySelectorAll('ul[data-categories]')].map((list) => safeInit('categorías', () => initCategories(list, options))),
-    ...[...document.querySelectorAll('[data-carousel]')].map((root) => safeInit('carrusel', () => initCarousel(root))),
+    ...[...document.querySelectorAll('[data-admin]')].map((root) => safeInit('administración', () => initAdmin(root, options))),
   ];
   await Promise.all(jobs);
 }

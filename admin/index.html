@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cargar cupones | KFDescuentos</title>
+<meta name="description" content="Página para quien administra KFDescuentos: arma paso a paso el texto de los cupones para publicarlos en el sitio.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="data-version" content="006c4eaa">
+<link rel="icon" href="/kfdescuentos.com.ar/favicon.svg?v=99f95a8c" type="image/svg+xml">
+<link rel="icon" href="/kfdescuentos.com.ar/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/kfdescuentos.com.ar/apple-touch-icon.png">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/variables.css?v=e656c94d">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/base.css?v=93125442">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/layout.css?v=785e1b03">
+<link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/components.css?v=4de1d511">
+<noscript><link rel="stylesheet" href="/kfdescuentos.com.ar/assets/css/sin-js.css?v=e2c7773f"></noscript>
+<script type="module" src="/kfdescuentos.com.ar/assets/js/app.js?v=7a113a9a"></script>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/kfdescuentos.com.ar/">KFDescuentos</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">Menú</button>
+    <nav class="site-nav" id="menu-principal" aria-label="Principal">
+      <ul>
+        <li><a href="/kfdescuentos.com.ar/">Inicio</a></li>
+        <li><a href="/kfdescuentos.com.ar/cupones/">Cupones</a></li>
+        <li><a href="/kfdescuentos.com.ar/contacto/">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="contenido" tabindex="-1" data-admin>
+  <p class="live-region" id="aviso" role="status" aria-live="polite"></p>
+  <div class="page-header page-header--wave">
+    <div class="container">
+      <h1>Cargar cupones</h1>
+      <p class="page-header__lead">Esta página es para quien administra el sitio. No hace falta saber de informática.</p>
+    </div>
+  </div>
+  <div class="wave" aria-hidden="true"></div>
+
+  <section class="section" aria-label="Cargar cupones">
+    <div class="container stack">
+      <noscript><p>Esta página necesita JavaScript para armar el texto de los cupones. Activalo en tu navegador y volvé a abrir la página.</p></noscript>
+
+      <h2>Cómo se hace</h2>
+      <ol class="admin-steps">
+        <li>Completá los datos del cupón y tocá <strong>Agregar a la lista</strong>.</li>
+        <li>Revisá que más abajo diga <strong>Todo en orden</strong>.</li>
+        <li>Tocá <strong>Copiar todo el texto</strong>.</li>
+        <li>Tocá <strong>Abrir el archivo en GitHub</strong> (iniciá sesión si te lo pide). Tocá el lápiz para editar, seleccioná todo el texto que hay, pegá el nuevo y tocá <strong>Commit changes</strong> y, en la ventana que se abre, de nuevo <strong>Commit changes</strong>.</li>
+        <li>Esperá unos minutos y revisá el sitio.</li>
+      </ol>
+      <p class="admin-note">Si algo sale mal, no pasa nada: el sitio sigue funcionando y podés volver a intentarlo.</p>
+
+      <form class="admin-form" data-admin-form novalidate>
+        <h2>Datos del cupón</h2>
+        <div class="admin-field">
+          <label for="a-code">Código del cupón</label>
+          <p class="admin-hint" id="a-code-hint">Tal como figura en el nombre de la lista, por ejemplo CORAZON.</p>
+          <input id="a-code" name="code" type="text" required autocomplete="off" aria-describedby="a-code-hint">
+        </div>
+        <div class="admin-field">
+          <label for="a-url">Enlace de la lista</label>
+          <p class="admin-hint" id="a-url-hint">Ya viene completo. No lo cambies salvo que Mercado Libre te dé otro.</p>
+          <input id="a-url" name="url" type="url" inputmode="url" autocomplete="off" aria-describedby="a-url-hint">
+        </div>
+        <div class="admin-field">
+          <label for="a-discount">Descuento (opcional)</label>
+          <p class="admin-hint" id="a-discount-hint">Por ejemplo 10% OFF. Si no lo sabés, dejalo vacío.</p>
+          <input id="a-discount" name="discount" type="text" autocomplete="off" aria-describedby="a-discount-hint">
+        </div>
+        <div class="admin-field">
+          <label for="a-conditions">Condiciones (opcional)</label>
+          <p class="admin-hint" id="a-conditions-hint">Lo que Mercado Libre pida para usar el cupón. Si no lo sabés, dejalo vacío.</p>
+          <textarea id="a-conditions" name="conditions" rows="3" aria-describedby="a-conditions-hint"></textarea>
+        </div>
+        <div class="admin-field">
+          <label for="a-expires">Vence el (opcional)</label>
+          <p class="admin-hint" id="a-expires-hint">Si lo completás, el cupón se oculta solo ese día.</p>
+          <input id="a-expires" name="expires" type="date" aria-describedby="a-expires-hint">
+        </div>
+        <div data-admin-errors role="alert"></div>
+        <button class="btn btn--primary" type="submit">Agregar a la lista</button>
+      </form>
+
+      <div class="admin-result">
+        <h2>Texto para guardar</h2>
+        <p data-admin-status role="status"></p>
+        <label for="a-json">Texto de todos los cupones</label>
+        <p class="admin-hint" id="a-json-hint">No hace falta tocar este texto: se arma solo.</p>
+        <textarea id="a-json" data-admin-json rows="16" spellcheck="false" aria-describedby="a-json-hint"></textarea>
+        <div class="admin-actions">
+          <button class="btn btn--primary" type="button" data-admin-copy>Copiar todo el texto</button>
+          <a class="btn btn--ghost" href="https://github.com/KFanesi/kfdescuentos.com.ar/edit/main/assets/data/coupons.json" target="_blank" rel="noopener noreferrer">Abrir el archivo en GitHub<span class="visually-hidden"> (se abre en una pestaña nueva)</span></a>
+        </div>
+      </div>
+
+      <h2>Cupones publicados</h2>
+      <ul class="admin-list" data-admin-list></ul>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <section class="footer-brand">
+      <p class="brand">KFDescuentos</p>
+      <p>Sitio independiente que reúne cupones de descuento de Mercado Libre.</p>
+      <p class="footer-lema">Ahorrá más, comprá mejor</p>
+    </section>
+    <nav class="footer-nav" aria-label="Enlaces rápidos">
+      <h2>Enlaces rápidos</h2>
+      <ul>
+        <li><a href="/kfdescuentos.com.ar/">Inicio</a></li>
+        <li><a href="/kfdescuentos.com.ar/cupones/">Cupones</a></li>
+        <li><a href="/kfdescuentos.com.ar/contacto/">Contacto</a></li>
+      </ul>
+    </nav>
+    <section class="footer-social" data-social hidden>
+      <h2>Seguinos</h2>
+      <ul class="social-list"></ul>
+    </section>
+    <section class="footer-legal">
+      <p class="affiliate-notice">KFDescuentos es un sitio independiente y no es un sitio oficial de Mercado Libre. Si comprás desde un enlace de esta página, podemos recibir una comisión. Los cupones pertenecen a Mercado Libre y pueden cambiar o vencer.</p>
+      <p class="copyright">© <span data-year>2026</span> KFDescuentos</p>
+    </section>
+  </div>
+</footer>
+</body>
+</html>

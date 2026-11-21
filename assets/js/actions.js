@@ -1,4 +1,4 @@
-import { siteUrl } from './utils.js?v=00781e01';
+import { siteUrl } from './utils.js?v=7a113a9a';
 
 // Copiar código y compartir. Los mensajes se anuncian en la región `aria-live` (#aviso) que ya existe en el HTML:
 // una región insertada junto con su mensaje no se anuncia en los lectores de pantalla.
@@ -12,7 +12,7 @@ const FEEDBACK_MS = 2500;
 // Etiqueta original y temporizador de cada botón: si se copia dos veces seguidas, no se toma "¡Cupón copiado!" como etiqueta.
 const buttonState = new WeakMap();
 
-function announce(liveRegion, message) {
+export function announce(liveRegion, message) {
   if (!liveRegion) return;
   liveRegion.textContent = '';
   liveRegion.textContent = message;
@@ -68,7 +68,7 @@ async function copyLink(url, view, liveRegion) {
 
 /**
  * Comparte un ítem con la Web Share API; sin ella (o si falla por otro motivo que cancelar) copia el enlace.
- * El enlace apunta a KFDescuentos (`cupones/?id=…`, `productos/?id=…`), no a Mercado Libre, para que quien lo recibe conozca el sitio.
+ * El enlace apunta a KFDescuentos (`cupones/?id=…`), no a Mercado Libre, para que quien lo recibe conozca el sitio.
  * `item` = { id, title, section }. Cancelar el diálogo (AbortError) no es un error: no se muestra nada.
  */
 export async function shareItem({ id, title, section }, liveRegion, view = globalThis) {

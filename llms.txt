@@ -1,20 +1,17 @@
 # KFDescuentos
 
-> KFDescuentos es un sitio independiente que reúne cupones de descuento de Mercado Libre y enlaces a sus listas de descuentos. No es un sitio oficial de Mercado Libre. Los enlaces a ofertas y cupones son de afiliado: si comprás desde uno, el sitio puede recibir una comisión.
+> KFDescuentos es un sitio independiente que reúne cupones de descuento de Mercado Libre. No es un sitio oficial de Mercado Libre. Los enlaces a cupones son de afiliado: si comprás desde uno, el sitio puede recibir una comisión.
 
-Los cupones y los precios pertenecen a Mercado Libre, pueden cambiar o vencer, y cada cupón tiene sus propias condiciones. Este archivo no incluye precios ni códigos porque caducan: para verlos, consultá las páginas del sitio.
+Los cupones pertenecen a Mercado Libre, pueden cambiar o vencer, y cada cupón tiene sus propias condiciones. Este archivo no incluye códigos porque caducan: para verlos, consultá las páginas del sitio.
 
 ## Secciones
 
-- [Inicio](https://kfanesi.github.io/kfdescuentos.com.ar/): presentación del sitio, cupones, productos destacados y cómo usar un cupón.
-- [Cupones](https://kfanesi.github.io/kfdescuentos.com.ar/cupones/): listado de cupones de Mercado Libre, con búsqueda.
-- [Productos](https://kfanesi.github.io/kfdescuentos.com.ar/productos/): productos de Mercado Libre con búsqueda, filtro por categoría y orden.
-- [Categorías](https://kfanesi.github.io/kfdescuentos.com.ar/categorias/): las categorías de productos, con acceso al listado de cada una.
+- [Inicio](https://kfanesi.github.io/kfdescuentos.com.ar/): presentación del sitio, algunos cupones y cómo usar un cupón.
+- [Cupones](https://kfanesi.github.io/kfdescuentos.com.ar/cupones/): los cupones vigentes, con búsqueda. Los que tienen fecha de vencimiento se ocultan solos ese día.
 - [Contacto](https://kfanesi.github.io/kfdescuentos.com.ar/contacto/): cómo comunicarse con el sitio; por ahora, a través de sus redes.
 
 ## Información
 
-- Categorías: Tecnología, Hogar, Electrodomésticos, Moda, Deportes, Herramientas, Belleza, Accesorios y Otros.
-- Cómo funciona un cupón: cada cupón tiene sus propias condiciones y puede vencer; conviene revisarlas en Mercado Libre antes de usarlo.
+- Cómo funciona un cupón: se copia el código (o se usa el enlace donde se aplica) y se abre la lista en Mercado Libre; cada cupón tiene sus propias condiciones y puede vencer, así que conviene revisarlas en Mercado Libre antes de usarlo.
 - Redes: canal de WhatsApp, X e Instagram, enlazadas desde el sitio.
 - Idioma y mercado: español de Argentina.

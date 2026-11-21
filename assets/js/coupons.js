@@ -1,22 +1,28 @@
-import { buildActions, el } from './dom.js?v=00781e01';
-import { mountList } from './list.js?v=00781e01';
-import { validateCoupon } from './schema.js?v=00781e01';
-import { COUPON_FIELDS } from './search.js?v=00781e01';
-import { formatDate } from './utils.js?v=00781e01';
+import { buildActions, el } from './dom.js?v=7a113a9a';
+import { mountList } from './list.js?v=7a113a9a';
+import { validateCoupon } from './schema.js?v=7a113a9a';
+import { COUPON_FIELDS } from './search.js?v=7a113a9a';
+import { formatDate } from './utils.js?v=7a113a9a';
+
+// Texto del título grande y del título al compartir, con respaldo para los cupones que no traen `discount` o `title`.
+const text = (value) => (typeof value === 'string' ? value.trim() : '');
+export const headingOf = (coupon) => text(coupon.discount) || text(coupon.title) || text(coupon.code) || coupon.brand;
+export const shareTitleOf = (coupon) => text(coupon.title) || text(coupon.discount) || text(coupon.code) || coupon.brand;
 
 /**
  * Tarjeta de un cupón (el CSS usa estas clases). Con código: muestra el código y "Copiar código".
  * Sin código (`code: null`) el cupón se aplica desde el enlace: se indica y no hay botón de copiar.
- * El `title` del JSON no se dibuja: identifica el cupón al compartirlo.
+ * El título grande es el `discount`; si el cupón no lo trae (las listas de Mercado Libre no informan el descuento), se usa el
+ * `title`, y si tampoco, el código o la marca: nunca queda un `h3` vacío. `description` y `conditions` son opcionales.
  */
 export function buildCouponCard(document, coupon) {
   const card = el(document, 'li', 'card coupon-card');
   card.id = coupon.id;
 
   if (coupon.exclusive) card.append(el(document, 'span', 'badge', 'Exclusivo'));
-  card.append(el(document, 'p', 'coupon-card__brand', coupon.brand), el(document, 'h3', 'coupon-card__discount', coupon.discount));
-  if (coupon.description) card.append(el(document, 'p', 'coupon-card__description', coupon.description));
-  if (coupon.conditions) card.append(el(document, 'p', 'coupon-card__conditions', coupon.conditions));
+  card.append(el(document, 'p', 'coupon-card__brand', coupon.brand), el(document, 'h3', 'coupon-card__discount', headingOf(coupon)));
+  if (text(coupon.description)) card.append(el(document, 'p', 'coupon-card__description', coupon.description));
+  if (text(coupon.conditions)) card.append(el(document, 'p', 'coupon-card__conditions', coupon.conditions));
   if (coupon.expiresAt) card.append(el(document, 'p', 'coupon-card__expires', `Vence el ${formatDate(coupon.expiresAt)}`));
 
   if (coupon.code === null) {
@@ -38,6 +44,6 @@ export function buildCouponCard(document, coupon) {
 export const initCoupons = (container, options) =>
   mountList(
     container,
-    { collection: 'coupons', validator: validateCoupon, buildCard: buildCouponCard, section: 'cupones', titleOf: (coupon) => coupon.title, searchFields: () => COUPON_FIELDS },
+    { collection: 'coupons', validator: validateCoupon, buildCard: buildCouponCard, section: 'cupones', titleOf: shareTitleOf, searchFields: COUPON_FIELDS },
     options,
   );
