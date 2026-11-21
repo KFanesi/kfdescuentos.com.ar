@@ -1,9 +1,9 @@
-import { announce, bindActions } from './actions.js?v=6e67dc66';
-import { loadCollection } from './data.js?v=6e67dc66';
-import { filterItems, paginate, sortByRecent } from './search.js?v=6e67dc66';
-import { positiveInt, readParams, writeParams } from './utils.js?v=6e67dc66';
+import { announce, bindActions } from './actions.js?v=bde872c9';
+import { loadCollection } from './data.js?v=bde872c9';
+import { filterItems, paginate, sortCoupons } from './search.js?v=bde872c9';
+import { positiveInt, readParams, writeParams } from './utils.js?v=bde872c9';
 
-// Listado de cupones con búsqueda y "Cargar más" (`ul[data-paginated]`), siempre de más reciente a más antiguo. Contrato con el HTML:
+// Listado de cupones con búsqueda y "Cargar más" (`ul[data-paginated]`), los diarios primero y de más reciente a más antiguo (sortCoupons). Contrato con el HTML:
 //  - `form[data-filters]` con el campo `q` (búsqueda) y `a[data-clear]`.
 //  - `[data-results]` (cantidad), `[data-noresults]`, `[data-empty]` y `[data-error]` (hermanos, `hidden` de entrada)
 //    y `button[data-load-more]` (`hidden` de entrada). `data-page-size` en la lista (por defecto 24).
@@ -67,7 +67,7 @@ export async function mountListing(container, spec, { fetchFn, now } = {}) {
     };
 
     const render = ({ announceCount }) => {
-      filtered = sortByRecent(filterItems(items, state, { fields }));
+      filtered = sortCoupons(filterItems(items, state, { fields }));
       container.replaceChildren();
       page = 0;
       showNextPage();

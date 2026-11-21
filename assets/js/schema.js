@@ -1,4 +1,4 @@
-import { isCalendarDate, isValidHttpsUrl } from './utils.js?v=6e67dc66';
+import { isCalendarDate, isValidHttpsUrl } from './utils.js?v=bde872c9';
 
 // Esquema de los JSON. Los validadores son puros: reciben un ítem y devuelven la lista de
 // errores en texto (vacía = válido), igual que los del test estático de datos.
@@ -26,19 +26,23 @@ const isDateOrAbsent = (value) => isAbsent(value) || isCalendarDate(value);
 const isTextOrAbsent = (value) => isAbsent(value) || typeof value === 'string';
 
 /**
- * Cupón. Obligatorios: id, brand, url (https), publishedAt, active y code. `code: null` es un cupón que se aplica desde el enlace.
- * `discount`, `title`, `description`, `conditions` y `exclusive` son opcionales: las listas de Mercado Libre no informan el
- * descuento ni el vencimiento y no se inventan. Sin `discount`, la tarjeta muestra el `title` (ver coupons.js).
+ * Cupón. Obligatorios: id, brand, url (https de Mercado Libre), publishedAt y active.
+ * Opcionales: `discount`, `title`, `description`, `conditions` (texto), `exclusive` y `diario` (booleanos; `diario: true` es un
+ * cupón diario y va siempre arriba), `expiresAt` (fecha o null) y `logo`. Las listas de Mercado Libre no informan el descuento
+ * ni el vencimiento y no se inventan. Sin `discount`, la tarjeta muestra el `title` (ver coupons.js).
+ * `code` YA NO es parte del modelo: el cupón se ve en la lista de Mercado Libre, no en el sitio. Si un JSON viejo todavía lo
+ * trae, no se valida (no es un error) y nunca se muestra, se busca ni se comparte: ningún módulo lo lee.
  */
 export function validateCoupon(coupon) {
   const errors = [];
   if (!isText(coupon.id)) errors.push('falta id');
   if (!isText(coupon.brand)) errors.push('falta brand');
-  if (!(coupon.code === null || isText(coupon.code))) errors.push('code debe ser texto no vacío o null (cupón por enlace)');
   for (const field of ['title', 'discount', 'description', 'conditions']) {
     if (!isTextOrAbsent(coupon[field])) errors.push(`${field} debe ser texto`);
   }
-  if (!isAbsent(coupon.exclusive) && !isFlag(coupon.exclusive)) errors.push('exclusive debe ser true o false');
+  for (const field of ['exclusive', 'diario']) {
+    if (!isAbsent(coupon[field]) && !isFlag(coupon[field])) errors.push(`${field} debe ser true o false`);
+  }
   if (!isCalendarDate(coupon.publishedAt)) errors.push('publishedAt debe ser AAAA-MM-DD');
   if (!isDateOrAbsent(coupon.expiresAt)) errors.push('expiresAt debe ser AAAA-MM-DD o null');
   if (!isValidHttpsUrl(coupon.url)) errors.push('url debe ser https');

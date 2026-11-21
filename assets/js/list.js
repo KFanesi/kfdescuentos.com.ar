@@ -1,7 +1,8 @@
-import { bindActions } from './actions.js?v=6e67dc66';
-import { loadCollection } from './data.js?v=6e67dc66';
-import { mountListing } from './listing.js?v=6e67dc66';
-import { positiveInt, readParams } from './utils.js?v=6e67dc66';
+import { bindActions } from './actions.js?v=bde872c9';
+import { loadCollection } from './data.js?v=bde872c9';
+import { mountListing } from './listing.js?v=bde872c9';
+import { sortCoupons } from './search.js?v=bde872c9';
+import { positiveInt, readParams } from './utils.js?v=bde872c9';
 
 // Ciclo común de los listados de cupones (home y /cupones/): cargar, dibujar y mostrar el estado (cargando, vacío, error).
 // Contrato con el HTML: el contenedor es un <ul> dentro de una <section> que puede traer `[data-empty]` y `[data-error]`
@@ -33,7 +34,9 @@ export async function mountList(container, spec, options = {}) {
   try {
     const result = await loadCollection(spec.collection, spec.validator, { document, fetchFn, now });
     const limit = positiveInt(container.dataset.limit);
-    const items = limit ? result.items.slice(0, limit) : result.items;
+    // El mismo orden que el listado, aplicado ANTES de recortar: si no, el límite dejaría afuera a los diarios.
+    const sorted = sortCoupons(result.items);
+    const items = limit ? sorted.slice(0, limit) : sorted;
 
     container.replaceChildren(...items.map((item) => spec.buildCard(document, item)));
     bindActions(container, { liveRegion: document.getElementById('aviso'), section: spec.section, titles: new Map(items.map((item) => [item.id, spec.titleOf(item)])) });

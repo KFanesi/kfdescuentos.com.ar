@@ -2,16 +2,16 @@
 
 > KFDescuentos es un sitio independiente que reúne cupones de descuento de Mercado Libre. No es un sitio oficial de Mercado Libre. Los enlaces a cupones son de afiliado: si comprás desde uno, el sitio puede recibir una comisión.
 
-Los cupones pertenecen a Mercado Libre, pueden cambiar o vencer, y cada cupón tiene sus propias condiciones. Este archivo no incluye códigos porque caducan: para verlos, consultá las páginas del sitio.
+Los cupones pertenecen a Mercado Libre, pueden cambiar o vencer, y cada cupón tiene sus propias condiciones. Este archivo no lista cupones concretos porque cambian seguido: para verlos, consultá las páginas del sitio.
 
 ## Secciones
 
 - [Inicio](https://kfanesi.github.io/kfdescuentos.com.ar/): presentación del sitio, algunos cupones y cómo usar un cupón.
-- [Cupones](https://kfanesi.github.io/kfdescuentos.com.ar/cupones/): los cupones vigentes, con búsqueda. Los que tienen fecha de vencimiento se ocultan solos ese día.
+- [Cupones](https://kfanesi.github.io/kfdescuentos.com.ar/cupones/): los cupones vigentes, con búsqueda; los cupones diarios aparecen primero. Los que tienen fecha de vencimiento se ocultan solos ese día.
 - [Contacto](https://kfanesi.github.io/kfdescuentos.com.ar/contacto/): cómo comunicarse con el sitio; por ahora, a través de sus redes.
 
 ## Información
 
-- Cómo funciona un cupón: se copia el código (o se usa el enlace donde se aplica) y se abre la lista en Mercado Libre; cada cupón tiene sus propias condiciones y puede vencer, así que conviene revisarlas en Mercado Libre antes de usarlo.
+- Cómo funciona un cupón: cada tarjeta lleva con el botón «Ver cupón en Mercado Libre» a la lista de Mercado Libre, donde se ve el cupón y sus condiciones; cada cupón tiene las suyas y puede vencer, así que conviene revisarlas, junto con el vencimiento, antes de usarlo.
 - Redes: canal de WhatsApp, X e Instagram, enlazadas desde el sitio.
 - Idioma y mercado: español de Argentina.

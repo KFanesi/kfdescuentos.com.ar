@@ -1,11 +1,11 @@
-import { normalizeText } from './utils.js?v=6e67dc66';
+import { normalizeText } from './utils.js?v=bde872c9';
 
 // Búsqueda, orden y paginación de los listados. Todo es puro (sin DOM) y nunca modifica las listas que recibe.
 
 const DEFAULT_PAGE_SIZE = 24;
 
-/** Campos donde se busca en un cupón. */
-export const COUPON_FIELDS = ['brand', 'title', 'code', 'discount', 'description'];
+/** Campos donde se busca en un cupón (el código del cupón no existe en el sitio, así que no se busca). */
+export const COUPON_FIELDS = ['title', 'brand', 'description', 'discount', 'conditions'];
 
 /**
  * ¿Coinciden todas las palabras de la consulta? Se compara sin mayúsculas ni tildes (normalizeText) y las palabras pueden
@@ -26,14 +26,16 @@ export function filterItems(items, { q } = {}, { fields = [] } = {}) {
 const text = (value) => (typeof value === 'string' ? value : '');
 
 /**
- * Los cupones se ordenan siempre por más recientes: `publishedAt` descendente y, a igual fecha, por id (así el orden es
- * estable). Devuelve una copia; la lista original no se toca.
+ * Orden de todo listado de cupones (home y /cupones/): primero los `diario: true` y, dentro de cada grupo, `publishedAt`
+ * descendente (el más reciente primero). A igual grupo y fecha se conserva el orden del archivo: `Array.prototype.sort` es
+ * estable, así que no hace falta desempatar por id. Devuelve una copia; la lista original no se toca.
  */
-export function sortByRecent(items) {
+export function sortCoupons(items) {
+  const rank = (item) => (item.diario === true ? 0 : 1);
   return [...items].sort((a, b) => {
+    if (rank(a) !== rank(b)) return rank(a) - rank(b);
     const [x, y] = [text(a.publishedAt), text(b.publishedAt)];
-    if (x !== y) return x < y ? 1 : -1;
-    return text(a.id) < text(b.id) ? -1 : text(a.id) > text(b.id) ? 1 : 0;
+    return x === y ? 0 : x < y ? 1 : -1;
   });
 }
 

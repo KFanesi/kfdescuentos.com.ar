@@ -1,7 +1,7 @@
-import { activeSocials, config } from './config.js?v=6e67dc66';
-import { initCoupons } from './coupons.js?v=6e67dc66';
-import { el } from './dom.js?v=6e67dc66';
-import { siteUrl } from './utils.js?v=6e67dc66';
+import { activeSocials, config } from './config.js?v=bde872c9';
+import { initCoupons } from './coupons.js?v=bde872c9';
+import { el } from './dom.js?v=bde872c9';
+import { siteUrl } from './utils.js?v=bde872c9';
 
 /** Menú móvil: el botón nace visible y la nav colapsada (así el header no cambia de alto al cargar el JS); abre y cierra la nav. Sin JS, `sin-js.css` (dentro de <noscript>) deja la nav siempre visible. */
 export function initMenu(document) {

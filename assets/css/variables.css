@@ -26,9 +26,7 @@
    - crema  sobre hero-b + brillo dorado (amarillo al 25 %, #754d06) = 6.88:1  peor caso con los destellos decorativos
    - gris   sobre blanco   =  6.58:1  marcador del campo de búsqueda
    - gris   sobre crema    =  6.08:1  condiciones y vencimiento en cupones
-   - blanco sobre verde    =  6.45:1  botón de copiar en estado .is-copied (además cambia el texto, no solo el color)
    - tinta  sobre amarillo = 12.51:1  etiqueta inclinada del hero (.hero__tag)
-   - azul   sobre crema    =  8.09:1  "Se aplica desde el enlace" en el cupón
    Páginas internas (sin colores nuevos: solo pares de la paleta ya validada). Ratios con la fórmula WCAG:
    - crema    sobre hero-a/hero-b = 12.93:1 / 8.53:1  .page-header: texto de la cabecera y .page-header__lead (degradé del hero)
    - amarillo sobre hero-a/hero-b =  9.58:1 / 6.32:1  énfasis (em/mark) dentro del h1 de la cabecera
