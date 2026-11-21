@@ -1,12 +1,12 @@
-import { activeSocials, config } from './config.js?v=eae5bc3b';
-import { initCarousel } from './carousel.js?v=eae5bc3b';
-import { initCategories } from './categories.js?v=eae5bc3b';
-import { initCoupons } from './coupons.js?v=eae5bc3b';
-import { el } from './dom.js?v=eae5bc3b';
-import { initProducts } from './products.js?v=eae5bc3b';
-import { siteUrl } from './utils.js?v=eae5bc3b';
+import { activeSocials, config } from './config.js?v=ccd82370';
+import { initCarousel } from './carousel.js?v=ccd82370';
+import { initCategories } from './categories.js?v=ccd82370';
+import { initCoupons } from './coupons.js?v=ccd82370';
+import { el } from './dom.js?v=ccd82370';
+import { initProducts } from './products.js?v=ccd82370';
+import { siteUrl } from './utils.js?v=ccd82370';
 
-/** Menú móvil: sin JS el botón queda oculto y la nav visible; con JS se muestra el botón y la nav se alterna. */
+/** Menú móvil: el botón nace visible y la nav colapsada (así el header no cambia de alto al cargar el JS); abre y cierra la nav. Sin JS, `sin-js.css` (dentro de <noscript>) deja la nav siempre visible. */
 export function initMenu(document) {
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#menu-principal');
@@ -19,7 +19,6 @@ export function initMenu(document) {
     if (!open && restoreFocus) toggle.focus();
   };
 
-  toggle.hidden = false;
   setOpen(false);
   toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
   nav.addEventListener('click', (event) => {
@@ -81,7 +80,6 @@ export async function safeInit(name, init) {
 
 /** Arranca todo lo que la página tenga: menú, redes, año y, si existen sus contenedores, cupones, productos, categorías y carruseles. */
 export async function initPage(document, { fetchFn, now = new Date() } = {}) {
-  document.documentElement.classList.add('js');
   const options = { fetchFn, now };
   const jobs = [
     safeInit('menú', () => initMenu(document)),

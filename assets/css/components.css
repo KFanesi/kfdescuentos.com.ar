@@ -83,7 +83,9 @@
 .site-header .brand { display: inline-flex; align-items: center; min-height: var(--target); margin-right: auto; }
 a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 
-/* Botón de menú: el atributo hidden lo oculta sin JS; con JS (app.js quita hidden) se ve en móvil */
+/* Botón de menú: visible por defecto en móvil. Sin JS lo oculta `sin-js.css` (cargado solo dentro de <noscript>). Por qué así
+   y no al revés: si el estado inicial fuera el de "sin JS" (nav abierta, ~100 px más alta) y el JS lo colapsara después,
+   todo el contenido saltaría hacia arriba al cargar (CLS). Con este orden el header mide lo mismo antes y después. */
 .menu-toggle {
   min-height: var(--target);
   min-width: var(--target);
@@ -94,7 +96,6 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
   border-radius: var(--radius-pill);
   font-weight: 700;
 }
-.menu-toggle[hidden] { display: none; }
 
 /* ---------- Navegación ---------- */
 .site-nav { flex-basis: 100%; }
@@ -113,10 +114,10 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .site-nav a[aria-current="page"] { background: var(--color-amarillo); color: var(--color-tinta); } /* 12.51:1, y no solo color: también subrayado */
 .site-nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 0.25em; }
 
-/* Móvil con JS: la nav es un panel desplegable; sin JS queda siempre visible */
-.js .site-nav:not(.is-open) { display: none; }
-.js .site-nav.is-open ul { flex-direction: column; padding-block: var(--space-2); }
-.js .site-nav.is-open a { width: 100%; }
+/* Móvil: la nav es un panel desplegable (colapsada por defecto); sin JS, `sin-js.css` la deja siempre visible */
+.site-nav:not(.is-open) { display: none; }
+.site-nav.is-open ul { flex-direction: column; padding-block: var(--space-2); }
+.site-nav.is-open a { width: 100%; }
 
 /* ---------- Buscador ---------- */
 .search-form { display: flex; flex: 1 1 100%; min-width: 0; gap: var(--space-2); } /* min-width:0: sin esto el form no baja de la suma de anchos intrínsecos (input size=20 + botón) y desborda a 320 px */
@@ -146,16 +147,16 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 @media (min-width: 64em) {
   .site-header__inner { flex-wrap: nowrap; padding-block: var(--space-3); gap: var(--space-5); }
   .site-header .brand { margin-right: 0; }
-  .menu-toggle, .js .menu-toggle { display: none; }
-  .site-nav, .js .site-nav:not(.is-open) { display: block; flex: 1 1 auto; }
+  .menu-toggle { display: none; }
+  .site-nav, .site-nav:not(.is-open) { display: block; flex: 1 1 auto; }
   .site-nav ul { justify-content: center; flex-wrap: nowrap; }
   .search-form { flex: 0 1 18rem; }
 }
-/* Tablet: la nav sin JS y el buscador caben en filas propias; con JS el menú sigue siendo desplegable */
+/* Tablet: el menú sigue siendo desplegable; abierto, sus enlaces van en fila */
 @media (min-width: 48em) and (max-width: 63.99em) {
   .search-form { flex-basis: 20rem; margin-left: auto; }
-  .js .site-nav.is-open ul { flex-direction: row; }
-  .js .site-nav.is-open a { width: auto; }
+  .site-nav.is-open ul { flex-direction: row; }
+  .site-nav.is-open a { width: auto; }
 }
 
 /* ---------- Footer ---------- */
@@ -519,7 +520,7 @@ a.brand:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 }
 
 /* =====================================================================================================================
-   Páginas internas (etapa 3): /cupones/, /productos/, /categorias/, /contacto/ y /404.html
+   Páginas internas: /cupones/, /productos/, /categorias/, /contacto/ y /404.html
    ===================================================================================================================== */
 
 /* ---------- Cabecera de página: banda marrón baja con el degradé y los granos del hero (comparte su bloque más arriba) ----------

@@ -1,6 +1,6 @@
-import { isCalendarDate, isValidHttpsUrl } from './utils.js?v=eae5bc3b';
+import { isCalendarDate, isValidHttpsUrl } from './utils.js?v=ccd82370';
 
-// Esquema de los JSON (prompt maestro, sección 7). Los validadores son puros: reciben un ítem y devuelven la lista de
+// Esquema de los JSON. Los validadores son puros: reciben un ítem y devuelven la lista de
 // errores en texto (vacía = válido), igual que los del test estático de datos.
 // `validateAll` aplica uno a toda una lista y descarta lo inválido sin romper el resto.
 

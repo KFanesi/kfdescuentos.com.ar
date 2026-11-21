@@ -50,7 +50,7 @@
 .grid--2 { grid-template-columns: minmax(0, 1fr); } /* minmax(0,…): un código largo no ensancha la columna ni desborda a 320 px */
 @media (min-width: 48em) { .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
-/* Olas: banda decorativa con una cresta azul y una franja amarilla debajo, como en el mockup (CSS puro, sin SVG ni url()).
+/* Olas: banda decorativa con una cresta azul y una franja amarilla debajo (CSS puro, sin SVG ni url()).
    Cómo se dibuja: dos elipses con border-radius dentro de una caja con overflow:hidden. ::before = cresta azul, algo corrida
    a la izquierda; ::after = relleno amarillo con cresta propia, que además tapa la parte baja de la azul y deja el borde inferior
    siempre amarillo. Se usa con <div class="wave" aria-hidden="true"></div>.

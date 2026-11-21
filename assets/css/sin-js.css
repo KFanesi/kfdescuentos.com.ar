@@ -1,0 +1,5 @@
+/* Solo se carga dentro de <noscript> (ver el <head> de cada página): sin JavaScript no hay quien abra el menú móvil, así
+   que el botón se oculta y la navegación queda siempre visible. Debe cargarse DESPUÉS de components.css: las reglas tienen
+   la misma especificidad y gana la última. */
+.menu-toggle { display: none; }
+.site-nav:not(.is-open) { display: block; }

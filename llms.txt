@@ -7,7 +7,7 @@ Los cupones y los precios pertenecen a Mercado Libre, pueden cambiar o vencer, y
 ## Secciones
 
 - [Inicio](https://kfanesi.github.io/kfdescuentos.com.ar/): presentación del sitio, cupones, productos destacados y cómo usar un cupón.
-- [Cupones](https://kfanesi.github.io/kfdescuentos.com.ar/cupones/): listado de cupones de Mercado Libre, con búsqueda; cada cupón trae su código para copiar o el enlace donde se aplica.
+- [Cupones](https://kfanesi.github.io/kfdescuentos.com.ar/cupones/): listado de cupones de Mercado Libre, con búsqueda.
 - [Productos](https://kfanesi.github.io/kfdescuentos.com.ar/productos/): productos de Mercado Libre con búsqueda, filtro por categoría y orden.
 - [Categorías](https://kfanesi.github.io/kfdescuentos.com.ar/categorias/): las categorías de productos, con acceso al listado de cada una.
 - [Contacto](https://kfanesi.github.io/kfdescuentos.com.ar/contacto/): cómo comunicarse con el sitio; por ahora, a través de sus redes.
@@ -15,6 +15,6 @@ Los cupones y los precios pertenecen a Mercado Libre, pueden cambiar o vencer, y
 ## Información
 
 - Categorías: Tecnología, Hogar, Electrodomésticos, Moda, Deportes, Herramientas, Belleza, Accesorios y Otros.
-- Cómo funciona un cupón: se copia el código desde el sitio (o se abre el enlace, si el cupón se aplica desde ahí), se abre la lista de descuentos en Mercado Libre y se revisan las condiciones del cupón antes de usarlo.
+- Cómo funciona un cupón: cada cupón tiene sus propias condiciones y puede vencer; conviene revisarlas en Mercado Libre antes de usarlo.
 - Redes: canal de WhatsApp, X e Instagram, enlazadas desde el sitio.
 - Idioma y mercado: español de Argentina.

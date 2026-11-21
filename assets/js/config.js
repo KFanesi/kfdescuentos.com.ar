@@ -1,8 +1,8 @@
-import { isValidHttpsUrl } from './utils.js?v=eae5bc3b';
+import { isValidHttpsUrl } from './utils.js?v=ccd82370';
 
 // Datos de runtime del sitio. Nunca se inventa un valor: lo que falta queda en null y no se renderiza.
 export const config = {
-  locale: 'es-AR', // PENDIENTE: confirmar con el dueño (es el valor propuesto en el prompt maestro)
+  locale: 'es-AR', // PENDIENTE: confirmar con el dueño
   currency: 'ARS', // PENDIENTE: confirmar con el dueño
   social: {
     whatsapp: 'https://whatsapp.com/channel/0029VbDdL6aATRSxLotGXr2l', // canal de WhatsApp (no un chat)
