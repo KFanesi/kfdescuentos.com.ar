@@ -9,7 +9,7 @@
     "publishedAt": "2026-11-21",
     "expiresAt": null,
     "url": "https://meli.la/18TSTKM",
-    "active": true
+    "active": false
   },
   {
     "id": "cupon-miamor",
@@ -21,7 +21,7 @@
     "publishedAt": "2026-11-21",
     "expiresAt": null,
     "url": "https://meli.la/2Zz76gW",
-    "active": true
+    "active": false
   },
   {
     "id": "cupon-infinitos",
@@ -33,7 +33,7 @@
     "publishedAt": "2026-11-21",
     "expiresAt": null,
     "url": "https://meli.la/2fhAsy4",
-    "active": true
+    "active": false
   },
   {
     "id": "cupon-becerra",
@@ -45,7 +45,7 @@
     "publishedAt": "2026-11-21",
     "expiresAt": null,
     "url": "https://meli.la/2XjStwV",
-    "active": true
+    "active": false
   },
   {
     "id": "cupon-frutilla",
@@ -57,7 +57,7 @@
     "publishedAt": "2026-11-21",
     "expiresAt": null,
     "url": "https://meli.la/1acfEog",
-    "active": true
+    "active": false
   },
   {
     "id": "cupon-estadio",
@@ -69,7 +69,7 @@
     "publishedAt": "2026-11-21",
     "expiresAt": null,
     "url": "https://meli.la/1QnfAqG",
-    "active": true
+    "active": false
   },
   {
     "id": "cupon-espacio",
@@ -81,7 +81,7 @@
     "publishedAt": "2026-11-21",
     "expiresAt": null,
     "url": "https://meli.la/1ymJMEG",
-    "active": true
+    "active": false
   },
   {
     "id": "cupon-comprasgrandes",
@@ -132,7 +132,7 @@
     "publishedAt": "2026-11-21",
     "expiresAt": null,
     "url": "https://meli.la/15PAWi7",
-    "active": true
+    "active": false
   },
   {
     "id": "cupon-ramenpara2",
@@ -144,7 +144,7 @@
     "publishedAt": "2026-11-21",
     "expiresAt": null,
     "url": "https://meli.la/2GzaYQ5",
-    "active": true
+    "active": false
   },
   {
     "id": "cupon-player1",
@@ -156,7 +156,7 @@
     "publishedAt": "2026-11-21",
     "expiresAt": null,
     "url": "https://meli.la/1dCyu2m",
-    "active": true
+    "active": false
   },
   {
     "id": "cupon-hacecalor",
@@ -168,6 +168,6 @@
     "publishedAt": "2026-11-21",
     "expiresAt": null,
     "url": "https://meli.la/32cNPWD",
-    "active": true
+    "active": false
   }
 ]
